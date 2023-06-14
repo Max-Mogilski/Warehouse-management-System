@@ -19,6 +19,14 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 // errors
 
+app.get("/test", (req, res) => {
+	res.json("siema");
+});
+
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
+});
+
 const port = process.env.PORT || 8080;
 
 const start = async () => {

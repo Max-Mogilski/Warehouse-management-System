@@ -1,0 +1,16 @@
+.btn {
+  cursor: pointer;
+  width: 80%;
+  height: 10rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--select-btn);
+  font-size: 1.6rem;
+  font-family: 'Montserrat-medium', sans-serif;
+  @media screen and (min-width: 600px) {
+    width: 30%;
+  }
+  @media screen and (min-width: 1000px) {
+    width: 15%;
+  }
+}
