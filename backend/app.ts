@@ -1,19 +1,20 @@
 require("dotenv").config();
 require("express-async-errors");
-const path = require("path");
+import path from "path";
 
 // extra security packages
-const helmet = require("helmet");
-const xss = require("xss-clean");
+import helmet from "helmet";
 
-const express = require("express");
+import morgan from "morgan";
+
+import express from "express";
 const app = express();
 
+app.use(morgan("tiny"));
 app.use(express.json());
 app.use(helmet());
-app.use(xss());
 
-app.use(express.static(path.resolve(__dirname, "../client/dist")));
+app.use(express.static(path.resolve(__dirname, "../../client/dist")));
 
 // routes /api/v1/
 
@@ -24,7 +25,7 @@ app.get("/test", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
+	res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"));
 });
 
 const port = process.env.PORT || 8080;
