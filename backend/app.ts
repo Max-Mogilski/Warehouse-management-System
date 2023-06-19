@@ -7,7 +7,9 @@ import helmet from "helmet";
 
 import morgan from "morgan";
 
+// app init
 import express from "express";
+import router from "./routes/globalRouter";
 const app = express();
 
 app.use(morgan("tiny"));
@@ -17,13 +19,9 @@ app.use(helmet());
 app.use(express.static(path.resolve(__dirname, "../../client/dist")));
 
 // routes /api/v1/
+app.use("/api/v1", router);
 
-// errors
-
-app.get("/test", (req, res) => {
-	res.json("siema");
-});
-
+// frontend routes
 app.get("*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"));
 });
