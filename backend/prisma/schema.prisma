@@ -14,5 +14,7 @@ datasource db {
 model product{
   id String @id @default(uuid())
   name String
+  price Float
+  url String
   quantity Int? @default(0)
 }

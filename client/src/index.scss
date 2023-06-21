@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
+  --shop-background: #ec8282;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --accent-color: #6674f4;
   --accent-color-hover: #5464fe;
   --white: #ffffff;
+  --shop-white: #fef6f2;
   --black: #000000;
   --gray: #2f2f2f;
   --text-main: #3b4659;
   --select-btn: #dfe6e7;
   --text-light: #bababa;
+  --scroll-color: darkgrey;
 }
 
 @font-face {
@@ -33,5 +36,8 @@ body {
 }
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }

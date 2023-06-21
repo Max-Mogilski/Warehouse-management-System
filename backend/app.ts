@@ -6,6 +6,7 @@ import path from "path";
 import helmet from "helmet";
 
 import morgan from "morgan";
+import cors from "cors";
 
 // app init
 import express from "express";
@@ -15,6 +16,8 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(helmet());
+
+app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "../../client/dist")));
 

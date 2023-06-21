@@ -15,13 +15,15 @@ export const getSigleProduct = (req: Request, res: Response) => {
 
 // JUST TO AVOID CREATING PRODUCTS MANUALLY - TESTING PURPOSE
 export const createProduct = async (req: Request, res: Response) => {
-	const { name, quantity } = req.body;
+	const { name, quantity, price, url } = req.body;
 
-	if (!name) {
-		throw new BadRequestError("Please provide product name!");
+	if (!name || !price || !url) {
+		throw new BadRequestError("Please provide product all fields");
 	}
 
-	const product = await prisma.product.create({ data: { name, quantity } });
+	const product = await prisma.product.create({
+		data: { name, quantity, price, url },
+	});
 
 	res.status(StatusCodes.OK).json({ data: product });
 };
