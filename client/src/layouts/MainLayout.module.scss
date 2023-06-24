@@ -14,14 +14,14 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 50px;
+  width: 40px;
   height: 60%;
   background-image: url('../assets/images/main-right.png');
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
   @media screen and (max-width: 600px) {
-    width: 40px;
+    width: 35px;
     height: 65%;
   }
 }
