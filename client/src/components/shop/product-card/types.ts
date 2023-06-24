@@ -1,6 +1,7 @@
 export interface ProductCardProps {
+  id: string;
   url: string;
   name: string;
-  stockQuantity: number;
+  stock: number;
   price: number;
 }

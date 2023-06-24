@@ -8,6 +8,7 @@
   background-color: var(--shop-background);
   overflow: hidden;
   .content {
+    position: relative;
     height: 100%;
     display: flex;
     justify-content: start;
@@ -20,13 +21,6 @@
     width: 30%;
     h2 {
       margin-bottom: 0.5rem;
-    }
-    .bar {
-      width: 93%;
-      height: 0.5rem;
-      border-radius: 10px;
-      opacity: 20%;
-      background-color: var(--text-light);
     }
     @media screen and (max-width: 1400px) {
       width: 40%;

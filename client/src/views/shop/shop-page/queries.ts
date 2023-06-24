@@ -1,5 +1,5 @@
-import API from '../../config/api';
-import axios from '../../config/axios';
+import API from '../../../config/api';
+import axios from '../../../config/axios';
 import { useQuery } from 'react-query';
 
 export const queryKeys = {

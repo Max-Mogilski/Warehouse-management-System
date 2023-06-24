@@ -11,6 +11,17 @@
   gap: 1rem;
   padding: 1rem;
   text-align: center;
+  .quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .total {
+      background-color: var(--shop-white);
+      border-radius: 10px;
+      padding: 0.2rem 1rem;
+    }
+  }
   .btn {
     position: absolute;
     display: flex;
@@ -23,12 +34,19 @@
     margin: 1rem;
     border-radius: 5px;
     border: none;
-    background-color: var(--text-main);
+    opacity: 50%;
+    background-color: var(--white);
     cursor: pointer;
-    &:disabled {
-      opacity: 30%;
-      cursor: auto;
-    }
+  }
+  .btn-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    margin: 0 0.5rem;
+    opacity: 30%;
+    cursor: pointer;
   }
   .img {
     background-size: cover;
