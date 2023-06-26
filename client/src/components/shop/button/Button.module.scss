@@ -1,0 +1,13 @@
+.btn {
+    border: none;
+    width: 95%;
+    padding: 1rem;
+    color: var(--white);
+    font-size: 1rem;
+    background-color: var(--shop-background);
+    cursor: pointer;
+    &:disabled {
+      opacity: 60%;
+      cursor: auto;
+    }
+  }

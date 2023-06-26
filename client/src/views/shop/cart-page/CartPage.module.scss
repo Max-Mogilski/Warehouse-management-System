@@ -46,30 +46,6 @@
     color: var(--shop-background);
   }
 }
-.pay {
-  border: none;
-  width: 95%;
-  padding: 1rem;
-  color: var(--white);
-  font-size: 1rem;
-  background-color: var(--shop-background);
-  cursor: pointer;
-  &:disabled {
-    opacity: 60%;
-    cursor: auto;
-  }
-}
-
-.back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: none;
-  opacity: 40%;
-  padding: 1rem 0.5rem;
-  background: none;
-  cursor: pointer;
-}
 
 .title {
   position: relative;

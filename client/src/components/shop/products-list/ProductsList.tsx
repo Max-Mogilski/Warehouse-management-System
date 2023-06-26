@@ -1,7 +1,14 @@
+import Loader from '@/components/loader/Loader';
 import ProductCard from '../product-card/ProductCard';
 import styles from './ProductsList.module.scss';
 
-const ProductsList = ({ products }: { products: Product[] }) => {
+const ProductsList = ({
+  products,
+  isLoading,
+}: {
+  products: Product[];
+  isLoading: boolean;
+}) => {
   return (
     <div className={styles.container}>
       {products?.map((product) => (
