@@ -28,12 +28,12 @@ const getSigleProduct = (req, res) => {
 exports.getSigleProduct = getSigleProduct;
 // JUST TO AVOID CREATING PRODUCTS MANUALLY - TESTING PURPOSE
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, quantity, price, url } = req.body;
+    const { name, price, url } = req.body;
     if (!name || !price || !url) {
         throw new bad_request_1.default("Please provide product all fields");
     }
     const product = yield exports.prisma.product.create({
-        data: { name, quantity, price, url },
+        data: req.body,
     });
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: product });
 });

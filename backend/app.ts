@@ -1,5 +1,6 @@
 require("dotenv").config();
 require("express-async-errors");
+import cookieParser from "cookie-parser";
 import path from "path";
 
 // extra security packages
@@ -14,6 +15,7 @@ import router from "./routes/globalRouter";
 const app = express();
 
 app.use(morgan("tiny"));
+app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
 app.use(helmet());
 

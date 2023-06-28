@@ -11,10 +11,28 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model product{
+model Product{
   id String @id @default(uuid())
   name String
   price Float
   url String
   quantity Int? @default(0)
+}
+model User {
+  id        String  @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String
+  password  String
+  token     Token?  @relation
+}
+
+model Token {
+  id            String  @id @default(uuid())
+  refreshToken String  @unique
+  ip            String
+  userAgent     String
+  isValid       Boolean
+  user          User?   @relation(fields: [userId], references: [id])
+  userId        String? @unique
 }
