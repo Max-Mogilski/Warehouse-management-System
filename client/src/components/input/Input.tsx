@@ -1,9 +1,22 @@
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import styles from './Input.module.scss';
 import { InputProps } from './types';
+import { motion } from 'framer-motion';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, name, placeholder, onChange, required, ...inputProps }, ref) => {
+  (
+    {
+      id,
+      name,
+      placeholder,
+      onChange,
+      required,
+      color,
+      animationDelay,
+      ...inputProps
+    },
+    ref
+  ) => {
     const [isFilled, setIsFilled] = useState(false);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +28,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        <div className={styles[`input-field`]}>
+        <motion.div
+          animate={{
+            x: 0,
+            y: -20,
+            opacity: 1,
+          }}
+          transition={{ duration: 0.5, delay: animationDelay }}
+          className={styles[`input-field`]}
+        >
           <input
             type="text"
             id={id}
@@ -25,7 +46,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onChange={handleInputChange}
             {...inputProps}
           />
-          <label className={isFilled ? styles.filled : ''}>
+          <label
+            style={{ background: color || 'white' }}
+            className={isFilled ? styles.filled : ''}
+          >
             {placeholder}{' '}
             <span
               className={`${styles.required} ${required ? styles.display : ''}`}
@@ -33,7 +57,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               *
             </span>
           </label>
-        </div>
+        </motion.div>
       </>
     );
   }

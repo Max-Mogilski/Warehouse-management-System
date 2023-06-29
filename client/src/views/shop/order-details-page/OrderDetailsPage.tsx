@@ -26,6 +26,7 @@ const OrderDetailsPage = () => {
           placeholder="Full Name"
           control={control}
           required={true}
+          color="#fef6f2"
           rules={{
             required: true,
           }}
@@ -36,6 +37,8 @@ const OrderDetailsPage = () => {
           placeholder="Email"
           control={control}
           required={true}
+          animationDelay={0.1}
+          color="#fef6f2"
           rules={{
             required: true,
           }}
@@ -46,6 +49,8 @@ const OrderDetailsPage = () => {
           placeholder="Address (House No. Building)"
           control={control}
           required={true}
+          animationDelay={0.2}
+          color="#fef6f2"
           rules={{
             required: true,
           }}
@@ -57,6 +62,8 @@ const OrderDetailsPage = () => {
             placeholder="City"
             control={control}
             required={true}
+            animationDelay={0.4}
+            color="#fef6f2"
             rules={{
               required: true,
             }}
@@ -67,6 +74,8 @@ const OrderDetailsPage = () => {
             placeholder="Postcode"
             control={control}
             required={true}
+            animationDelay={0.4}
+            color="#fef6f2"
             rules={{
               required: true,
             }}

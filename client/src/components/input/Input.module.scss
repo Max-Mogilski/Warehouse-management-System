@@ -1,6 +1,6 @@
 .input-field {
   position: relative;
-
+  opacity: 0;
   input {
     width: 100%;
     height: 60px;
@@ -14,6 +14,7 @@
 
     &:focus {
       border: 2px solid var(--shop-background);
+      color: var(--text-main);
 
       ~ label {
         top: 0;

@@ -1,5 +1,7 @@
 const API = {
   GET_ALL_PRODUCTS: 'products',
+  LOGIN_USER: 'auth/login',
+  REGISTER_USER: 'auth/register',
 };
 
 export default API;

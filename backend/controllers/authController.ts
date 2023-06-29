@@ -10,11 +10,20 @@ import { removeCookie } from "../utils/removeCookie";
 import { createRefreshToken } from "../utils/createRefreshToken";
 
 export const register = async (req: Request, res: Response) => {
-	const { firstName, lastName, email, password } = req.body;
+	const { fullName, email, password } = req.body;
 
-	if (!firstName || !lastName || !email || !password) {
+	if (!fullName || !email || !password) {
 		throw new BadRequestError("Please provide all required values");
 	}
+
+	const userCredentials = fullName.split(" ");
+	if (userCredentials.length < 2) {
+		throw new BadRequestError("Please provide your firstname and lastname");
+	}
+
+	// Need to change user model to fullname instead of firstname and lastname !!!
+	const firstName = userCredentials[0];
+	const lastName = userCredentials[1];
 
 	// throw an error if user already exists
 	const isEmailInUse = await prisma.user.findFirst({

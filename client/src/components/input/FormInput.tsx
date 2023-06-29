@@ -11,6 +11,8 @@ export default function FormInput<TFormFields extends Record<string, unknown>>({
   rules,
   type = 'text',
   control,
+  color,
+  animationDelay,
 }: FormInputProps<TFormFields> &
   Omit<
     InputProps,
@@ -28,6 +30,8 @@ export default function FormInput<TFormFields extends Record<string, unknown>>({
             placeholder={placeholder}
             type={type}
             required={required}
+            color={color}
+            animationDelay={animationDelay}
             {...field}
           />
         );

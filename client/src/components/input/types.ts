@@ -24,4 +24,6 @@ export interface InputProps
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;
+  color?: string;
+  animationDelay?: number;
 }

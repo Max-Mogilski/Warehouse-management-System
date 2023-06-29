@@ -23,10 +23,17 @@ const unauthenticated_1 = __importDefault(require("../errors/unauthenticated"));
 const removeCookie_1 = require("../utils/removeCookie");
 const createRefreshToken_1 = require("../utils/createRefreshToken");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { firstName, lastName, email, password } = req.body;
-    if (!firstName || !lastName || !email || !password) {
+    const { fullName, email, password } = req.body;
+    if (!fullName || !email || !password) {
         throw new bad_request_1.default("Please provide all required values");
     }
+    const userCredentials = fullName.split(" ");
+    if (userCredentials.length < 2) {
+        throw new bad_request_1.default("Please provide your firstname and lastname");
+    }
+    // Need to change user model to fullname instead of firstname and lastname !!!
+    const firstName = userCredentials[0];
+    const lastName = userCredentials[1];
     // throw an error if user already exists
     const isEmailInUse = yield prisma_1.prisma.user.findFirst({
         where: {

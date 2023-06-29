@@ -1,0 +1,87 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3.5rem;
+    @media screen and (max-width: 1400px) {
+      width: 30%;
+    }
+    @media screen and (max-width: 1000px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 600px) {
+      width: 70%;
+    }
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      h2 {
+        font-weight: 900;
+        font-size: 3rem;
+        letter-spacing: 1rem;
+        color: var(--shop-background);
+      }
+      img {
+        height: 3rem;
+        @media screen and (max-width: 600px) {
+          right: 0;
+        }
+      }
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      margin-bottom: 10%;
+      .btn {
+        margin-top: 1rem;
+        border: none;
+        width: 100%;
+        padding: 1rem;
+        color: var(--white);
+        font-size: 1rem;
+        background-color: var(--shop-background);
+        cursor: pointer;
+        &:disabled {
+          opacity: 60%;
+          cursor: auto;
+        }
+      }
+      .switch-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-size: 0.9rem;
+        color: var(--scroll-color);
+        gap: 0.1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .error {
+        position: absolute;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        max-width: 15rem;
+        max-height: 2rem;
+        overflow: scroll;
+        color: var(--shop-background);
+      }
+    }
+  }
+}

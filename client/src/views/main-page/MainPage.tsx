@@ -5,7 +5,7 @@ const MainPage = () => {
   return (
     <nav className={styles.container}>
       <MenuButton path="/shop" content="Shop" />
-      <MenuButton path="/" content="CMS" />
+      <MenuButton path="/cms/auth" content="CMS" />
     </nav>
   );
 };
