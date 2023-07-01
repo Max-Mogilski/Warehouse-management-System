@@ -7,7 +7,6 @@ import { defaultValues } from './static';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticateUser } from './query';
 import API from '@/config/api';
-import { AxiosError } from 'axios';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -29,6 +28,7 @@ const AuthPage = () => {
       },
       onSuccess: () => {
         navigate('/cms');
+        
       },
     });
   };
@@ -40,8 +40,8 @@ const AuthPage = () => {
 
   const register = (data: AuthFormData) => {
     registerUserMutation.mutate(data, {
-      onError: (error) => {
-        console.log(error);
+      onError: (error: any) => {
+        setError(error?.response?.data?.msg);
       },
       onSuccess: () => {
         navigate('/cms');

@@ -8,17 +8,21 @@
   background-color: var(--shop-background);
   overflow: hidden;
   .content {
-    position: relative;
     height: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 3rem 1rem 1rem;
     background-color: var(--shop-white);
-    height: 100%;
     width: 30%;
+    overflow: hidden;
+    &-animation {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 3rem 1rem 1rem;
+      flex-direction: column;
+      gap: 2rem;
+    }
     h2 {
       margin-bottom: 0.5rem;
     }

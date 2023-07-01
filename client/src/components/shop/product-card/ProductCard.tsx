@@ -1,11 +1,20 @@
 import styles from './ProductCard.module.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import plusIcon from '../../../assets/icons/plus.svg';
 import { ProductCardProps } from './types';
 import { toast } from 'react-hot-toast';
 import { useCartStore } from '@/stores/cartStore';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-const ProductCard = ({ url, name, stock, price, id }: ProductCardProps) => {
+const ProductCard = ({
+  url,
+  name,
+  stock,
+  price,
+  id,
+  delay,
+}: ProductCardProps) => {
   const cartStore = useCartStore((state) => state);
   const currentItem = cartStore.cart.find((item) => item.id === id);
   let isAvailable = false;
@@ -21,8 +30,34 @@ const ProductCard = ({ url, name, stock, price, id }: ProductCardProps) => {
     toast.success('Added to the cart!');
   };
 
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      x: -100,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
+
   return (
-    <div className={styles.container}>
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={cardVariants}
+      transition={{ duration: 0.5, ease: 'easeOut', delay: delay }}
+      className={styles.container}
+    >
       <button
         onClick={handleAddToCart}
         disabled={!isAvailable}
@@ -36,7 +71,7 @@ const ProductCard = ({ url, name, stock, price, id }: ProductCardProps) => {
         {isAvailable ? 'In stock' : 'Out of stock'}
       </p>
       <p className={styles.price}>{price} PLN</p>
-    </div>
+    </motion.div>
   );
 };
 

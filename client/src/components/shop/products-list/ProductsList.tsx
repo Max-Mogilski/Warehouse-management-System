@@ -1,10 +1,9 @@
-import Loader from '@/components/loader/Loader';
+import React from 'react';
 import ProductCard from '../product-card/ProductCard';
 import styles from './ProductsList.module.scss';
 
 const ProductsList = ({
   products,
-  isLoading,
 }: {
   products: Product[];
   isLoading: boolean;
@@ -13,7 +12,7 @@ const ProductsList = ({
     <div className={styles.container}>
       {products?.map((product) => (
         <ProductCard
-          key={product.id}
+          delay={products[1].id === product.id ? 0.35 : 0}
           id={product.id}
           url={product.url}
           name={product.name}

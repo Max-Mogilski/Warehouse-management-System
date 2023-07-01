@@ -4,4 +4,5 @@ export interface ProductCardProps {
   name: string;
   stock: number;
   price: number;
+  delay: number;
 }

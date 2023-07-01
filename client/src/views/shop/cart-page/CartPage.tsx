@@ -18,7 +18,11 @@ const Cart = () => {
       <h2>Summary of Your Order</h2>
       <div className={styles.list}>
         {store.cart.map((item) => (
-          <CartItem product={item} key={item.id} />
+          <CartItem
+            product={item}
+            key={item.id}
+            delay={store?.cart[1]?.id === item.id ? 0.5 : 0}
+          />
         ))}
       </div>
       {!isCartEmpty && <img className={styles.empty} src={emptyCart} />}
