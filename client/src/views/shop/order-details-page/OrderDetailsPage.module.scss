@@ -11,4 +11,13 @@
   gap: 2rem;
   padding: 1rem;
   width: 100%;
+  .error {
+    margin-top: -1.5rem;
+    font-size: 0.9rem;
+    max-width: 15rem;
+    max-height: 2rem;
+    overflow: scroll;
+    text-align: left;
+    color: var(--shop-background);
+  }
 }

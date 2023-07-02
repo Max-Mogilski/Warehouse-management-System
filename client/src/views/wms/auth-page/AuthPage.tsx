@@ -7,6 +7,7 @@ import { defaultValues } from './static';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticateUser } from './query';
 import API from '@/config/api';
+import { validateEmail, validateFullName, validatePassword } from './validate';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const AuthPage = () => {
   const {
     handleSubmit,
     control,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<AuthFormData>({ defaultValues });
 
   const login = (data: AuthFormData) => {
@@ -28,7 +29,6 @@ const AuthPage = () => {
       },
       onSuccess: () => {
         navigate('/cms');
-        
       },
     });
   };
@@ -71,10 +71,12 @@ const AuthPage = () => {
               name="fullName"
               placeholder="Full Name"
               type="text"
-              control={control}
               animationDelay={0.4}
+              error={errors.fullName}
+              control={control}
               rules={{
-                required: true,
+                required: 'Full Name is required',
+                validate: validateFullName,
               }}
             />
           )}
@@ -83,23 +85,27 @@ const AuthPage = () => {
             name="email"
             placeholder="Email"
             type="email"
+            error={errors.email}
             control={control}
             rules={{
-              required: true,
+              required: 'Email is required',
+              validate: validateEmail,
             }}
           />
           <FormInput
             id="password"
             name="password"
             placeholder="Password"
-            control={control}
             type="password"
+            error={errors.password}
+            control={control}
             animationDelay={0.4}
             rules={{
-              required: true,
+              required: 'Password is required',
+              validate: validatePassword,
             }}
           />
-          {error && <span className={styles.error}>{error}</span>}
+          {error && <p className={styles.error}>{error}</p>}
 
           <button
             type="button"

@@ -73,10 +73,9 @@
         cursor: pointer;
       }
       .error {
-        position: absolute;
-        text-align: center;
+        text-align: left;
         font-size: 0.9rem;
-        margin-top: 1rem;
+        margin-top: -1.5rem;
         max-width: 15rem;
         max-height: 2rem;
         overflow: scroll;

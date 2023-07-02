@@ -56,3 +56,14 @@
     }
   }
 }
+
+.error {
+  text-align: left;
+  font-size: 0.9rem;
+  margin-top: -2rem;
+  margin-bottom: 0.5rem;
+  max-width: 15rem;
+  max-height: 2.5rem;
+  overflow: scroll;
+  color: var(--shop-background);
+}

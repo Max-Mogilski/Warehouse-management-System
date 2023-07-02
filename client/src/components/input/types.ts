@@ -12,7 +12,7 @@ import {
 export interface FormInputProps<TFormFields extends FieldValues> {
   name: Path<TFormFields>;
   control: UseFormReturn<TFormFields>['control'];
-  errors?: Partial<DeepMap<TFormFields, FieldError>>;
+  error?: any;
   rules?: RegisterOptions;
 }
 
@@ -20,7 +20,7 @@ export interface InputProps
   extends Pick<ControllerRenderProps, 'name' | 'onChange' | 'value'> {
   id: string;
   type?: HTMLInputTypeAttribute;
-  error?: string;
+  error?: any;
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;

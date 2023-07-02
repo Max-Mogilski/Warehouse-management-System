@@ -12,6 +12,7 @@ export default function FormInput<TFormFields extends Record<string, unknown>>({
   type = 'text',
   control,
   color,
+  error,
   animationDelay,
 }: FormInputProps<TFormFields> &
   Omit<
@@ -31,6 +32,7 @@ export default function FormInput<TFormFields extends Record<string, unknown>>({
             type={type}
             required={required}
             color={color}
+            error={error}
             animationDelay={animationDelay}
             {...field}
           />

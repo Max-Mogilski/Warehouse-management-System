@@ -3,7 +3,6 @@ import ShopLayout from '@/layouts/ShopLayout';
 import { useCartStore } from '@/stores/cartStore';
 import styles from './CartPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';
-import { useNavigate } from 'react-router-dom';
 import emptyCart from '@/assets/icons/empty-cart.svg';
 import Button from '@/components/shop/button/Button';
 import ButtonBack from '@/components/shop/button/ButtonBack';

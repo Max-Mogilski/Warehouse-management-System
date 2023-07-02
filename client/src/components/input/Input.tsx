@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import styles from './Input.module.scss';
 import { InputProps } from './types';
 import { motion } from 'framer-motion';
@@ -12,6 +12,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       required,
       color,
+      error,
       animationDelay,
       ...inputProps
     },
@@ -58,6 +59,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             </span>
           </label>
         </motion.div>
+        {error && <p className={styles.error}>{error.message}</p>}
       </>
     );
   }

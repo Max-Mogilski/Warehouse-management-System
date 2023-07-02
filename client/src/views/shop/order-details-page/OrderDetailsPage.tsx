@@ -5,6 +5,7 @@ import Button from '@/components/shop/button/Button';
 import ButtonBack from '@/components/shop/button/ButtonBack';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/input/FormInput';
+import { useState } from 'react';
 
 const OrderDetailsPage = () => {
   const {
@@ -12,6 +13,7 @@ const OrderDetailsPage = () => {
     control,
     formState: { isValid },
   } = useForm();
+  const [error, setError] = useState<null | string>(null);
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -81,6 +83,7 @@ const OrderDetailsPage = () => {
             }}
           />
         </div>
+        {error && <p className={styles.error}>{error}</p>}
       </form>
       <Bar />
       <Button
