@@ -7,7 +7,11 @@ import { defaultValues } from './static';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticateUser } from './query';
 import API from '@/config/api';
-import { validateEmail, validateFullName, validatePassword } from './validate';
+import {
+  validateEmail,
+  validateFullName,
+  validatePassword,
+} from '@/utils/globalValidation';
 
 const AuthPage = () => {
   const navigate = useNavigate();

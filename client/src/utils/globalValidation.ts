@@ -52,3 +52,23 @@ export const validateFullName = (value: string): boolean | string => {
 
   return true;
 };
+
+export const validateFilledInput = (value: string): boolean | string => {
+  const trimmedValue = value.trim();
+
+  if (trimmedValue.length === 0) {
+    return 'Please enter value';
+  }
+
+  return true;
+};
+
+export const validatePostCode = (value: string): boolean | string => {
+  const trimmedValue = value.trim();
+
+  if (!/^[0-9-]+$/.test(trimmedValue)) {
+    return 'Post code can only contain numbers and hyphens';
+  }
+
+  return true;
+};

@@ -5,17 +5,30 @@ import Button from '@/components/shop/button/Button';
 import ButtonBack from '@/components/shop/button/ButtonBack';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/input/FormInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  validateEmail,
+  validateFilledInput,
+  validateFullName,
+  validatePostCode,
+} from '@/utils/globalValidation';
 
 const OrderDetailsPage = () => {
   const {
     handleSubmit,
     control,
-    formState: { isValid },
+    formState: { errors, dirtyFields },
   } = useForm();
   const [error, setError] = useState<null | string>(null);
 
   const onSubmit = (data: any) => console.log(data);
+  const [isFormFilled, setIsFormFilled] = useState(false);
+
+  useEffect(() => {
+    const requiredFields = ['fullName', 'email', 'address', 'city', 'postcode'];
+    const isFilled = requiredFields.every((field) => dirtyFields[field]);
+    setIsFormFilled(isFilled);
+  }, [Object.values(dirtyFields)]);
 
   return (
     <ShopLayout>
@@ -27,10 +40,12 @@ const OrderDetailsPage = () => {
           name="fullName"
           placeholder="Full Name"
           control={control}
+          error={errors.fullName}
           required={true}
           color="#fef6f2"
           rules={{
-            required: true,
+            required: 'Full Name is required',
+            validate: validateFullName,
           }}
         />
         <FormInput
@@ -38,11 +53,13 @@ const OrderDetailsPage = () => {
           name="email"
           placeholder="Email"
           control={control}
+          error={errors.email}
           required={true}
           animationDelay={0.1}
           color="#fef6f2"
           rules={{
-            required: true,
+            required: 'Email is required',
+            validate: validateEmail,
           }}
         />
         <FormInput
@@ -50,11 +67,13 @@ const OrderDetailsPage = () => {
           name="address"
           placeholder="Address (House No. Building)"
           control={control}
+          error={errors.address}
           required={true}
           animationDelay={0.2}
           color="#fef6f2"
           rules={{
             required: true,
+            validate: validateFilledInput,
           }}
         />
         <div className={styles.row}>
@@ -68,6 +87,7 @@ const OrderDetailsPage = () => {
             color="#fef6f2"
             rules={{
               required: true,
+              validate: validateFilledInput,
             }}
           />
           <FormInput
@@ -80,16 +100,20 @@ const OrderDetailsPage = () => {
             color="#fef6f2"
             rules={{
               required: true,
+              validate: validatePostCode,
             }}
           />
         </div>
+        {errors.postcode && typeof errors.postcode.message === 'string' && (
+          <p className={styles.error}>{errors.postcode.message}</p>
+        )}
         {error && <p className={styles.error}>{error}</p>}
       </form>
       <Bar />
       <Button
         onClick={handleSubmit(onSubmit)}
+        disabled={!isFormFilled}
         content="Pay"
-        disabled={!isValid}
       />
     </ShopLayout>
   );
