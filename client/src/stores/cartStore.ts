@@ -77,4 +77,11 @@ export const useCartStore = create<cartState & cartActions>((set, get) => ({
       totalPrice: state.totalPrice - product.price * product.quantity!,
     }));
   },
+  clearCart: () => {
+    set(() => ({
+      totalItems: 0,
+      cart: [],
+      totalPrice: 0,
+    }));
+  },
 }));

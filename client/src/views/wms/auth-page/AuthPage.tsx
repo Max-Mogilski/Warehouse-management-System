@@ -6,12 +6,13 @@ import { useState } from 'react';
 import { defaultValues } from './static';
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticateUser } from './query';
-import API from '@/config/api';
+import API, { defaultSchema, schemaFiller } from '@/config/api';
 import {
   validateEmail,
   validateFullName,
   validatePassword,
 } from '@/utils/globalValidation';
+import { AxiosError } from 'axios';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -23,13 +24,14 @@ const AuthPage = () => {
   const {
     handleSubmit,
     control,
-    formState: { isValid, errors },
+    formState: { errors },
   } = useForm<AuthFormData>({ defaultValues });
 
   const login = (data: AuthFormData) => {
-    loginUserMutation.mutate(data, {
-      onError: (error: any) => {
-        setError(error?.response?.data?.msg);
+    loginUserMutation.mutate(schemaFiller(data, defaultSchema.login), {
+      onError: (error: unknown) => {
+        const axiosError = error as AxiosError<any>;
+        setError(axiosError?.response?.data?.msg);
       },
       onSuccess: () => {
         navigate('/cms');
@@ -43,9 +45,11 @@ const AuthPage = () => {
   };
 
   const register = (data: AuthFormData) => {
-    registerUserMutation.mutate(data, {
-      onError: (error: any) => {
-        setError(error?.response?.data?.msg);
+    console.log(data);
+    registerUserMutation.mutate(schemaFiller(data, defaultSchema.register), {
+      onError: (error: unknown) => {
+        const axiosError = error as AxiosError<any>;
+        setError(axiosError?.response?.data?.msg);
       },
       onSuccess: () => {
         navigate('/cms');

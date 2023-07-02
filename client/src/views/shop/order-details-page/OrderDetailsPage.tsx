@@ -13,6 +13,11 @@ import {
   validatePostCode,
 } from '@/utils/globalValidation';
 import { useCartStore } from '@/stores/cartStore';
+import { usePlaceOrder } from './query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { queryKeys } from '../shop-page/queries';
+import { defaultSchema, schemaFiller } from '@/config/api';
 
 const OrderDetailsPage = () => {
   const {
@@ -22,10 +27,26 @@ const OrderDetailsPage = () => {
   } = useForm();
   const [error, setError] = useState<null | string>(null);
   const store = useCartStore((state) => state);
+  const placeOrderMutation = usePlaceOrder(queryKeys.productsLists());
+  const navigate = useNavigate();
 
-  const cartItems = store.cart.map((product) => product.id);
-
-  const onSubmit = (data: any) => console.log(data, cartItems);
+  const onSubmit = (data: any) => {
+    const products = store.cart.map((product) => {
+      return { id: product.id, quantity: product.quantity };
+    });
+    placeOrderMutation.mutate(
+      schemaFiller({ ...data, products }, defaultSchema.order),
+      {
+        onSuccess: (res) => {
+          store.clearCart();
+          navigate(`/shop/transaction/${res.id}`);
+        },
+        onError: (error) => {
+          toast.error(error as string);
+        },
+      }
+    );
+  };
   const [isFormFilled, setIsFormFilled] = useState(false);
 
   useEffect(() => {

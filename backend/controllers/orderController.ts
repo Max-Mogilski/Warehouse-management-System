@@ -6,6 +6,7 @@ import { Statuses } from "../utils/order/enum/statuses";
 import { StatusCodes } from "http-status-codes";
 import { getOrderProductsList } from "../utils/order/getOrderProductsList";
 import { getUpdatedProducts } from "../utils/order/getUpdatedProducts";
+import BadRequestError from "../errors/bad-request";
 
 export const createOrder = async (req: Request, res: Response) => {
 	const {
@@ -17,6 +18,20 @@ export const createOrder = async (req: Request, res: Response) => {
 		products,
 	} = req.body;
 
+	if (
+		!street ||
+		!city ||
+		!postcode ||
+		!email ||
+		!fullName ||
+		!products ||
+		products.length === 0 ||
+		!products[0].id ||
+		!products[0].quantity
+	) {
+		throw new BadRequestError("Please provide all values!");
+	}
+
 	const productsToFind = products.map((product: { id: string }) => product.id);
 
 	const productsData = await prisma.product.findMany({
@@ -24,6 +39,10 @@ export const createOrder = async (req: Request, res: Response) => {
 			id: { in: productsToFind },
 		},
 	});
+
+	if (!productsData || productsData.length === 0) {
+		throw new BadRequestError("Product doesn't exist");
+	}
 
 	checkStockQuantity(productsData, products);
 	const totalPrice = getTotalOrderPrice(productsData, products);
