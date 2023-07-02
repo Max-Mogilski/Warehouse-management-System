@@ -1,4 +1,4 @@
-import { prisma } from "../prisma/prisma";
+import { prisma } from "../../prisma/prisma";
 import { Request } from "express";
 import crypto from "crypto";
 

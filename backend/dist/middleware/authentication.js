@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticateUser = void 0;
 const unauthenticated_1 = __importDefault(require("../errors/unauthenticated"));
-const jwt_1 = require("../utils/jwt");
+const jwt_1 = require("../utils/auth/jwt");
 const prisma_1 = require("../prisma/prisma");
 const authenticateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { refreshToken, accessToken } = req.signedCookies;

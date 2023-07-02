@@ -2,12 +2,12 @@ import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
 import BadRequestError from "../errors/bad-request";
 import { prisma } from "../prisma/prisma";
-import { attachCookiesToResponse } from "../utils/jwt";
-import { createTokenUser } from "../utils/createTokenUser";
-import { comparePassword, hashPassword } from "../utils/passwordHash";
+import { attachCookiesToResponse } from "../utils/auth/jwt";
+import { createTokenUser } from "../utils/auth/createTokenUser";
+import { comparePassword, hashPassword } from "../utils/auth/passwordHash";
 import UnauthenticatedError from "../errors/unauthenticated";
-import { removeCookie } from "../utils/removeCookie";
-import { createRefreshToken } from "../utils/createRefreshToken";
+import { removeCookie } from "../utils/auth/removeCookie";
+import { createRefreshToken } from "../utils/auth/createRefreshToken";
 
 export const register = async (req: Request, res: Response) => {
 	const { fullName, email, password } = req.body;

@@ -16,12 +16,12 @@ exports.logout = exports.login = exports.register = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const prisma_1 = require("../prisma/prisma");
-const jwt_1 = require("../utils/jwt");
-const createTokenUser_1 = require("../utils/createTokenUser");
-const passwordHash_1 = require("../utils/passwordHash");
+const jwt_1 = require("../utils/auth/jwt");
+const createTokenUser_1 = require("../utils/auth/createTokenUser");
+const passwordHash_1 = require("../utils/auth/passwordHash");
 const unauthenticated_1 = __importDefault(require("../errors/unauthenticated"));
-const removeCookie_1 = require("../utils/removeCookie");
-const createRefreshToken_1 = require("../utils/createRefreshToken");
+const removeCookie_1 = require("../utils/auth/removeCookie");
+const createRefreshToken_1 = require("../utils/auth/createRefreshToken");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fullName, email, password } = req.body;
     if (!fullName || !email || !password) {

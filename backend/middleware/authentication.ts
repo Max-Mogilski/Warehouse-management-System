@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import UnauthenticatedError from "../errors/unauthenticated";
-import { attachCookiesToResponse, isTokenValid } from "../utils/jwt";
+import { attachCookiesToResponse, isTokenValid } from "../utils/auth/jwt";
 import { prisma } from "../prisma/prisma";
 
 export const authenticateUser = async (

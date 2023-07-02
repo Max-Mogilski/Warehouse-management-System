@@ -12,6 +12,7 @@ import {
   validateFullName,
   validatePostCode,
 } from '@/utils/globalValidation';
+import { useCartStore } from '@/stores/cartStore';
 
 const OrderDetailsPage = () => {
   const {
@@ -20,8 +21,11 @@ const OrderDetailsPage = () => {
     formState: { errors, dirtyFields },
   } = useForm();
   const [error, setError] = useState<null | string>(null);
+  const store = useCartStore((state) => state);
 
-  const onSubmit = (data: any) => console.log(data);
+  const cartItems = store.cart.map((product) => product.id);
+
+  const onSubmit = (data: any) => console.log(data, cartItems);
   const [isFormFilled, setIsFormFilled] = useState(false);
 
   useEffect(() => {
