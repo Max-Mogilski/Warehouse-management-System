@@ -42,6 +42,7 @@ const OrderDetailsPage = () => {
       schemaFiller({ ...data, products }, defaultSchema.order),
       {
         onSuccess: (res) => {
+          store.clearCart();
           navigate(`/shop/transaction/${res.id}`);
         },
         onError: (error) => {
