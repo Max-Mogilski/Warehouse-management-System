@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logout = exports.login = exports.register = void 0;
+exports.currentUser = exports.logout = exports.login = exports.register = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const prisma_1 = require("../prisma/prisma");
@@ -31,7 +31,6 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (userCredentials.length < 2) {
         throw new bad_request_1.default("Please provide your firstname and lastname");
     }
-    // Need to change user model to fullname instead of firstname and lastname !!!
     const firstName = userCredentials[0];
     const lastName = userCredentials[1];
     // throw an error if user already exists
@@ -104,3 +103,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "user logged out!" });
 });
 exports.logout = logout;
+const currentUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(http_status_codes_1.StatusCodes.OK).json({ user: req.user });
+});
+exports.currentUser = currentUser;

@@ -13,6 +13,7 @@ import {
   validatePassword,
 } from '@/utils/globalValidation';
 import { AxiosError } from 'axios';
+import { useUserInfo } from '@/stores/user';
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -33,7 +34,9 @@ const AuthPage = () => {
         const axiosError = error as AxiosError<any>;
         setError(axiosError?.response?.data?.msg);
       },
-      onSuccess: () => {
+      onSuccess: (data) => {
+        const { user } = data;
+        useUserInfo.setState({ user });
         navigate('/cms');
       },
     });
@@ -45,13 +48,14 @@ const AuthPage = () => {
   };
 
   const register = (data: AuthFormData) => {
-    console.log(data);
     registerUserMutation.mutate(schemaFiller(data, defaultSchema.register), {
       onError: (error: unknown) => {
         const axiosError = error as AxiosError<any>;
         setError(axiosError?.response?.data?.msg);
       },
-      onSuccess: () => {
+      onSuccess: (data) => {
+        const { user } = data;
+        useUserInfo.setState({ user });
         navigate('/cms');
       },
     });

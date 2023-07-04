@@ -19,3 +19,12 @@ export interface cartActions {
   decrementProductQuantity: (Item: Product) => void;
   clearCart: () => void;
 }
+
+export interface User {
+  userId: string;
+  firstName: string;
+}
+export type UserStoreState = {
+  user: User | null | undefined;
+  setUser: (payload: User) => void;
+};

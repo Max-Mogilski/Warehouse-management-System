@@ -3,6 +3,8 @@ const API = {
   LOGIN_USER: 'auth/login',
   REGISTER_USER: 'auth/register',
   CREATE_ORDER: 'orders',
+  TEST: 'test',
+  GET_CURRENT_USER: 'auth/current-user',
 };
 
 export default API;

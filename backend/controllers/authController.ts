@@ -21,7 +21,6 @@ export const register = async (req: Request, res: Response) => {
 		throw new BadRequestError("Please provide your firstname and lastname");
 	}
 
-	// Need to change user model to fullname instead of firstname and lastname !!!
 	const firstName = userCredentials[0];
 	const lastName = userCredentials[1];
 
@@ -111,4 +110,8 @@ export const logout = async (req: Request, res: Response) => {
 	removeCookie(res, "refreshToken");
 
 	res.status(StatusCodes.OK).json({ msg: "user logged out!" });
+};
+
+export const currentUser = async (req: Request, res: Response) => {
+	res.status(StatusCodes.OK).json({ user: req.user });
 };

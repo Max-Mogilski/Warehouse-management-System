@@ -19,7 +19,11 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.json());
 app.use(helmet());
 
-app.use(cors());
+// allow images from external resources
+app.use((req, res, next) => {
+	res.setHeader("Content-Security-Policy", "img-src 'self' data: *");
+	next();
+});
 
 app.use(express.static(path.resolve(__dirname, "../../client/dist")));
 

@@ -11,3 +11,4 @@ exports.router = express_1.default.Router();
 exports.router.post("/login", authController_1.login);
 exports.router.post("/register", authController_1.register);
 exports.router.delete("/logout", authentication_1.authenticateUser, authController_1.logout);
+exports.router.get("/current-user", authentication_1.authenticateUser, authController_1.currentUser);
