@@ -122,9 +122,16 @@ const AuthPage = () => {
           <button
             type="button"
             onClick={handleSubmit(onSubmit)}
+            disabled={
+              loginUserMutation.isLoading || registerUserMutation.isLoading
+            }
             className={styles.btn}
           >
-            {isLogin ? 'Login' : 'Register'}
+            {loginUserMutation.isLoading || registerUserMutation.isLoading
+              ? 'Loading'
+              : isLogin
+              ? 'Login'
+              : 'Register'}
           </button>
           <button
             type="button"
