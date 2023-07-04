@@ -14,7 +14,7 @@ import {
 } from '@/utils/globalValidation';
 import { useCartStore } from '@/stores/cartStore';
 import { usePlaceOrder } from './query';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { queryKeys } from '../shop-page/queries';
 import { defaultSchema, schemaFiller } from '@/config/api';
@@ -31,6 +31,10 @@ const OrderDetailsPage = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
+    if (store.cart.length === 0) {
+      toast.error("Orders can't be placed without items");
+      return;
+    }
     const products = store.cart.map((product) => {
       return { id: product.id, quantity: product.quantity };
     });
@@ -38,7 +42,6 @@ const OrderDetailsPage = () => {
       schemaFiller({ ...data, products }, defaultSchema.order),
       {
         onSuccess: (res) => {
-          store.clearCart();
           navigate(`/shop/transaction/${res.id}`);
         },
         onError: (error) => {
@@ -137,8 +140,8 @@ const OrderDetailsPage = () => {
       <Bar />
       <Button
         onClick={handleSubmit(onSubmit)}
-        disabled={!isFormFilled}
-        content="Pay"
+        disabled={!isFormFilled || placeOrderMutation.isLoading}
+        content={placeOrderMutation.isLoading ? 'Loading' : 'Pay'}
       />
     </ShopLayout>
   );

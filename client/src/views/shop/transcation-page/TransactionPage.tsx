@@ -1,9 +1,10 @@
 import ShopLayout from '@/layouts/ShopLayout';
 import Loader from '@/components/loader/Loader';
 import styles from './TransactionPage.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SuccessAnimation from './SuccessAnimation';
 import Button from '@/components/shop/button/Button';
+import { useCartStore } from '@/stores/cartStore';
 
 const TransactionPage = () => {
   const [isLoading, setIsLoading] = useState(true);
