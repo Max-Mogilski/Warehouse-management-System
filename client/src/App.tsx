@@ -15,6 +15,7 @@ import axios from '@/config/axios';
 import API from './config/api';
 import { useUserInfo } from './stores/user';
 import OnlyGuest from './components/protected/OnlyGuest';
+import Loading from './views/loading/Loading';
 
 function App() {
   const queryClient = new QueryClient({
@@ -39,7 +40,7 @@ function App() {
   }, []);
 
   if (isLoading) {
-    return <div>loading</div>;
+    return <Loading />;
   }
 
   return (

@@ -19,7 +19,7 @@ axios.interceptors.response.use(
       return;
     }
     if (error.response.status === 403) {
-      location.replace('/cms/auth');
+      return;
     } else if (error.response.status === 409) {
       if (error.response.data.errors) {
         error.response.data.errors.forEach((error) => {
