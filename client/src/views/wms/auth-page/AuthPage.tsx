@@ -1,4 +1,4 @@
-import FormInput from '@/components/input/FormInput';
+import FormInput from '@/components/shared/input/FormInput';
 import styles from './AuthPage.module.scss';
 import { useForm } from 'react-hook-form';
 import boxes from '@/assets/icons/box.svg';

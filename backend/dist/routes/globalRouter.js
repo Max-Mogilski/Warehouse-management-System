@@ -11,15 +11,11 @@ const error_handler_1 = __importDefault(require("../middleware/error-handler"));
 const productsRouter_1 = require("./productsRouter");
 const authRoutes_1 = require("./authRoutes");
 const orderRoutes_1 = require("./orderRoutes");
-const authentication_1 = require("../middleware/authentication");
 const router = express_1.default.Router();
 // routes
 router.use("/products", productsRouter_1.router);
-router.use("/orders", orderRoutes_1.router);
 router.use("/auth", authRoutes_1.router);
-router.get("/test", authentication_1.authenticateUser, (req, res) => {
-    return res.send("Siema");
-});
+router.use("/orders", orderRoutes_1.router);
 router.use(not_found_1.default);
 router.use(error_handler_1.default);
 exports.default = router;

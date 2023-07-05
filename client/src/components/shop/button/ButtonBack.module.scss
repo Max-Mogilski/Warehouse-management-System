@@ -8,3 +8,10 @@
   background: none;
   cursor: pointer;
 }
+
+.big {
+  padding: 2rem;
+  @media screen and (max-width: 600px) {
+    padding: 1.5rem 1rem;
+  }
+}

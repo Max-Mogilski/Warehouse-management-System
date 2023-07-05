@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createOrder = void 0;
+exports.getAllOrders = exports.createOrder = void 0;
 const prisma_1 = require("../prisma/prisma");
 const getTotalPrice_1 = require("../utils/order/getTotalPrice");
 const checkQuantity_1 = require("../utils/order/checkQuantity");
@@ -67,3 +67,13 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.status(http_status_codes_1.StatusCodes.OK).json(order);
 });
 exports.createOrder = createOrder;
+const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const ordersList = yield prisma_1.prisma.order.findMany({
+        select: {
+            id: true,
+            status: true,
+        },
+    });
+    res.status(http_status_codes_1.StatusCodes.OK).json({ data: ordersList });
+});
+exports.getAllOrders = getAllOrders;

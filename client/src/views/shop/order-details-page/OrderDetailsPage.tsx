@@ -4,7 +4,7 @@ import Bar from '@/components/shop/bar/Bar';
 import Button from '@/components/shop/button/Button';
 import ButtonBack from '@/components/shop/button/ButtonBack';
 import { useForm } from 'react-hook-form';
-import FormInput from '@/components/input/FormInput';
+import FormInput from '@/components/shared/input/FormInput';
 import { useEffect, useState } from 'react';
 import {
   validateEmail,

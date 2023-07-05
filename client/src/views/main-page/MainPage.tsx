@@ -1,13 +1,11 @@
-import MenuButton from '../../components/menu-button/MenuButton';
-import styles from './MainPage.module.scss';
+import MenuButtonProps from '@/components/shared/menu-button/types';
+import MenuList from '@/components/shared/menu-list/MenuList';
 
-const MainPage = () => {
-  return (
-    <nav className={styles.container}>
-      <MenuButton path="/shop" content="Shop" />
-      <MenuButton path="/cms/auth" content="CMS" />
-    </nav>
-  );
-};
+const options: MenuButtonProps[] = [
+  { content: 'Shop', path: '/shop' },
+  { content: 'CMS', path: '/cms/auth' },
+];
+
+const MainPage = () => <MenuList options={options} />;
 
 export default MainPage;

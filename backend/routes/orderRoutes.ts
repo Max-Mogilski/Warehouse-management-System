@@ -1,6 +1,7 @@
 import express from "express";
-import { createOrder } from "../controllers/orderController";
+import { createOrder, getAllOrders } from "../controllers/orderController";
+import { authenticateUser } from "../middleware/authentication";
 
 export const router = express.Router();
 
-router.post("/", createOrder);
+router.route("/").post(createOrder).get(authenticateUser, getAllOrders);

@@ -9,13 +9,17 @@ import OrderDetailsPage from './views/shop/order-details-page/OrderDetailsPage';
 import AuthPage from './views/wms/auth-page/AuthPage';
 import TransactionPage from './views/shop/transcation-page/TransactionPage';
 import MenuPage from './views/wms/menu-page/MenuPage';
-import Protected from './components/protected/Protected';
+import Protected from './components/shared/protected/Protected';
 import { useEffect, useState } from 'react';
 import axios from '@/config/axios';
 import API from './config/api';
 import { useUserInfo } from './stores/user';
-import OnlyGuest from './components/protected/OnlyGuest';
+import OnlyGuest from './components/shared/protected/OnlyGuest';
 import Loading from './views/loading/Loading';
+import InspectionMenuPage from './views/wms/inspection-menu-page/InespectionMenuPage';
+import MenagmentMenuPage from './views/wms/menagment-menu-page/MenagmentMenuPage';
+import PickMenuPage from './views/wms/pick-menu-page/PickMenuPage';
+import OrderList from './views/wms/inspection-menu-page/order-list/OrderList';
 
 function App() {
   const queryClient = new QueryClient({
@@ -66,6 +70,46 @@ function App() {
             element={
               <Protected>
                 <MenuPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection"
+            element={
+              <Protected>
+                <InspectionMenuPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection/orders"
+            element={
+              <Protected>
+                <OrderList />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection/orders/:id"
+            element={
+              <Protected>
+                <div>Order</div>
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/menagment"
+            element={
+              <Protected>
+                <MenagmentMenuPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/pick"
+            element={
+              <Protected>
+                <PickMenuPage />
               </Protected>
             }
           />

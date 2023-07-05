@@ -3,7 +3,7 @@ import SummaryTile from '../../../components/shop/summary-tile/SummaryTile';
 import { useProductsQuery } from './queries';
 import ShopLayout from '@/layouts/ShopLayout';
 import Bar from '@/components/shop/bar/Bar';
-import Loader from '@/components/loader/Loader';
+import Loader from '@/components/shared/loader/Loader';
 import styles from './ShopPage.module.scss';
 
 const ShopPage = () => {

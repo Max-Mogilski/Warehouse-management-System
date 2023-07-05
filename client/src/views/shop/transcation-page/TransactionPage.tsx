@@ -1,5 +1,5 @@
 import ShopLayout from '@/layouts/ShopLayout';
-import Loader from '@/components/loader/Loader';
+import Loader from '@/components/shared/loader/Loader';
 import styles from './TransactionPage.module.scss';
 import { useState } from 'react';
 import SuccessAnimation from './SuccessAnimation';

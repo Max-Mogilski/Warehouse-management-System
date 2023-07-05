@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 5rem 0 2rem;
+  overflow-y: auto;
+  gap: 2rem;
+  @media screen and (min-width: 600px) {
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15%;
+    padding: 0;
+  }
+}
