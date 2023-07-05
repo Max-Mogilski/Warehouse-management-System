@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllOrders = exports.createOrder = void 0;
+exports.getOrderProducts = exports.getOrder = exports.getAllOrders = exports.createOrder = void 0;
 const prisma_1 = require("../prisma/prisma");
 const getTotalPrice_1 = require("../utils/order/getTotalPrice");
 const checkQuantity_1 = require("../utils/order/checkQuantity");
@@ -21,6 +21,7 @@ const http_status_codes_1 = require("http-status-codes");
 const getOrderProductsList_1 = require("../utils/order/getOrderProductsList");
 const getUpdatedProducts_1 = require("../utils/order/getUpdatedProducts");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
+const getPreparedOrderProducts_1 = require("../utils/order/getPreparedOrderProducts");
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { address: street, city, postcode, email, fullName, products, } = req.body;
     if (!street ||
@@ -77,3 +78,41 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: ordersList });
 });
 exports.getAllOrders = getAllOrders;
+const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const orderId = req.params.id;
+    const order = yield prisma_1.prisma.order.findFirst({
+        where: {
+            id: orderId,
+        },
+    });
+    if (!order) {
+        throw new bad_request_1.default(`Order with id ${orderId} doesn't exists!`);
+    }
+    res.status(http_status_codes_1.StatusCodes.OK).json({ data: order });
+});
+exports.getOrder = getOrder;
+const getOrderProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const orderId = req.params.id;
+    const orderProductsIds = [];
+    const orderProducts = yield prisma_1.prisma.orderProduct.findMany({
+        where: {
+            orderId,
+        },
+    });
+    if (!orderProducts || orderProducts.length === 0) {
+        throw new bad_request_1.default(`Order with id ${orderId} doesn't have any products!`);
+    }
+    orderProducts.forEach((product) => {
+        orderProductsIds.push(product.productId);
+    });
+    const productTypes = yield prisma_1.prisma.product.findMany({
+        where: {
+            id: {
+                in: orderProductsIds,
+            },
+        },
+    });
+    const products = (0, getPreparedOrderProducts_1.getPreparedOrderProducts)(orderProducts, productTypes);
+    res.status(http_status_codes_1.StatusCodes.OK).json({ data: products });
+});
+exports.getOrderProducts = getOrderProducts;

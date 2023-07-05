@@ -61,7 +61,7 @@ const OrderDetailsPage = () => {
 
   return (
     <ShopLayout>
-      <ButtonBack navigateTo="/shop/cart" />
+      <ButtonBack big={false} navigateTo="/shop/cart" />
       <h2>Order Details</h2>
       <form className={styles.form}>
         <FormInput

@@ -4,6 +4,8 @@ const API = {
   REGISTER_USER: 'auth/register',
   CREATE_ORDER: 'orders',
   GET_ALL_ORDERS: 'orders',
+  GET_ORDER: (id) => `orders/${id}`,
+  GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,
   GET_CURRENT_USER: 'auth/current-user',
 };
 

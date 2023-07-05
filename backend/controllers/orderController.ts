@@ -7,6 +7,7 @@ import { StatusCodes } from "http-status-codes";
 import { getOrderProductsList } from "../utils/order/getOrderProductsList";
 import { getUpdatedProducts } from "../utils/order/getUpdatedProducts";
 import BadRequestError from "../errors/bad-request";
+import { getPreparedOrderProducts } from "../utils/order/getPreparedOrderProducts";
 
 export const createOrder = async (req: Request, res: Response) => {
 	const {
@@ -79,4 +80,49 @@ export const getAllOrders = async (req: Request, res: Response) => {
 		},
 	});
 	res.status(StatusCodes.OK).json({ data: ordersList });
+};
+
+export const getOrder = async (req: Request, res: Response) => {
+	const orderId = req.params.id;
+	const order = await prisma.order.findFirst({
+		where: {
+			id: orderId,
+		},
+	});
+	if (!order) {
+		throw new BadRequestError(`Order with id ${orderId} doesn't exists!`);
+	}
+	res.status(StatusCodes.OK).json({ data: order });
+};
+
+export const getOrderProducts = async (req: Request, res: Response) => {
+	const orderId = req.params.id;
+	const orderProductsIds: string[] = [];
+
+	const orderProducts = await prisma.orderProduct.findMany({
+		where: {
+			orderId,
+		},
+	});
+	if (!orderProducts || orderProducts.length === 0) {
+		throw new BadRequestError(
+			`Order with id ${orderId} doesn't have any products!`
+		);
+	}
+
+	orderProducts.forEach((product) => {
+		orderProductsIds.push(product.productId);
+	});
+
+	const productTypes = await prisma.product.findMany({
+		where: {
+			id: {
+				in: orderProductsIds,
+			},
+		},
+	});
+
+	const products = getPreparedOrderProducts(orderProducts, productTypes);
+
+	res.status(StatusCodes.OK).json({ data: products });
 };

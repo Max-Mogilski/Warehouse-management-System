@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--select-btn);
+    font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    .arrow {
+      width: 2rem;
+    }
+  }
+}

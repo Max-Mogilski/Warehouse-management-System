@@ -13,7 +13,7 @@ const Cart = () => {
 
   return (
     <ShopLayout>
-      <ButtonBack navigateTo="/shop" />
+      <ButtonBack big={false} navigateTo="/shop" />
       <h2>Summary of Your Order</h2>
       <div className={styles.list}>
         {store.cart.map((item) => (

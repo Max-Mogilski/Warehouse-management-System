@@ -6,7 +6,7 @@
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  padding: 5rem 0 2rem;
+  padding: var(--include-navigation-padding) 0 2rem;
   overflow-y: auto;
   gap: 2rem;
   @media screen and (min-width: 600px) {

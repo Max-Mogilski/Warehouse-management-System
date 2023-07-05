@@ -9,3 +9,5 @@ const orderController_1 = require("../controllers/orderController");
 const authentication_1 = require("../middleware/authentication");
 exports.router = express_1.default.Router();
 exports.router.route("/").post(orderController_1.createOrder).get(authentication_1.authenticateUser, orderController_1.getAllOrders);
+exports.router.route("/:id").get(authentication_1.authenticateUser, orderController_1.getOrder);
+exports.router.get("/:id/products", authentication_1.authenticateUser, orderController_1.getOrderProducts);

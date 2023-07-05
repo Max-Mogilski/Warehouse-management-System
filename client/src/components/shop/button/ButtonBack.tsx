@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ButtonBack = ({
   navigateTo,
-  big,
+  big = true,
 }: {
   navigateTo: string;
   big?: boolean;

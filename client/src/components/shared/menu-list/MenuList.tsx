@@ -17,6 +17,7 @@ const MenuList = ({
       {options ? (
         options?.map((button) => (
           <MenuButton
+            key={button.content}
             content={button.content}
             path={button.path}
             disabled={button.disabled ? true : false}

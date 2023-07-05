@@ -20,6 +20,7 @@ import InspectionMenuPage from './views/wms/inspection-menu-page/InespectionMenu
 import MenagmentMenuPage from './views/wms/menagment-menu-page/MenagmentMenuPage';
 import PickMenuPage from './views/wms/pick-menu-page/PickMenuPage';
 import OrderList from './views/wms/inspection-menu-page/order-list/OrderList';
+import OrderDetails from './views/wms/inspection-menu-page/order-list/order-details/OrderDetails';
 
 function App() {
   const queryClient = new QueryClient({
@@ -93,7 +94,7 @@ function App() {
             path="/cms/inspection/orders/:id"
             element={
               <Protected>
-                <div>Order</div>
+                <OrderDetails />
               </Protected>
             }
           />
