@@ -15,7 +15,7 @@ const ProductsList = () => {
       <ul>
         {data?.map((product: any) => {
           return (
-            <li className={styles.product}>
+            <li className={styles.product} key={product.productId}>
               <p>Product Name: {product.name}</p>
               <p>Product id: {product.productId}</p>
               <p>

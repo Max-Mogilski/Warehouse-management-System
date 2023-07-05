@@ -21,7 +21,6 @@ const http_status_codes_1 = require("http-status-codes");
 const getOrderProductsList_1 = require("../utils/order/getOrderProductsList");
 const getUpdatedProducts_1 = require("../utils/order/getUpdatedProducts");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
-const getPreparedOrderProducts_1 = require("../utils/order/getPreparedOrderProducts");
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { address: street, city, postcode, email, fullName, products, } = req.body;
     if (!street ||
@@ -93,26 +92,23 @@ const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getOrder = getOrder;
 const getOrderProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const orderId = req.params.id;
-    const orderProductsIds = [];
     const orderProducts = yield prisma_1.prisma.orderProduct.findMany({
         where: {
             orderId,
+        },
+        include: {
+            product: true,
         },
     });
     if (!orderProducts || orderProducts.length === 0) {
         throw new bad_request_1.default(`Order with id ${orderId} doesn't have any products!`);
     }
-    orderProducts.forEach((product) => {
-        orderProductsIds.push(product.productId);
-    });
-    const productTypes = yield prisma_1.prisma.product.findMany({
-        where: {
-            id: {
-                in: orderProductsIds,
-            },
-        },
-    });
-    const products = (0, getPreparedOrderProducts_1.getPreparedOrderProducts)(orderProducts, productTypes);
+    const products = orderProducts.map((orderProduct) => ({
+        productId: orderProduct.productId,
+        quantity: orderProduct.quantity,
+        name: orderProduct.product.name,
+        price: orderProduct.product.price,
+    }));
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: products });
 });
 exports.getOrderProducts = getOrderProducts;

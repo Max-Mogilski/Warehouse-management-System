@@ -7,7 +7,6 @@ import { StatusCodes } from "http-status-codes";
 import { getOrderProductsList } from "../utils/order/getOrderProductsList";
 import { getUpdatedProducts } from "../utils/order/getUpdatedProducts";
 import BadRequestError from "../errors/bad-request";
-import { getPreparedOrderProducts } from "../utils/order/getPreparedOrderProducts";
 
 export const createOrder = async (req: Request, res: Response) => {
 	const {
@@ -97,32 +96,28 @@ export const getOrder = async (req: Request, res: Response) => {
 
 export const getOrderProducts = async (req: Request, res: Response) => {
 	const orderId = req.params.id;
-	const orderProductsIds: string[] = [];
 
 	const orderProducts = await prisma.orderProduct.findMany({
 		where: {
 			orderId,
 		},
+		include: {
+			product: true,
+		},
 	});
+
 	if (!orderProducts || orderProducts.length === 0) {
 		throw new BadRequestError(
 			`Order with id ${orderId} doesn't have any products!`
 		);
 	}
 
-	orderProducts.forEach((product) => {
-		orderProductsIds.push(product.productId);
-	});
-
-	const productTypes = await prisma.product.findMany({
-		where: {
-			id: {
-				in: orderProductsIds,
-			},
-		},
-	});
-
-	const products = getPreparedOrderProducts(orderProducts, productTypes);
+	const products = orderProducts.map((orderProduct) => ({
+		productId: orderProduct.productId,
+		quantity: orderProduct.quantity,
+		name: orderProduct.product.name,
+		price: orderProduct.product.price,
+	}));
 
 	res.status(StatusCodes.OK).json({ data: products });
 };
