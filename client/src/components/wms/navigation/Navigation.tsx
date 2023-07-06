@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Variants, motion } from 'framer-motion';
 import styles from './Navigation.module.scss';
 import Bar from '@/components/shop/bar/Bar';
@@ -36,6 +36,7 @@ const Navigation = () => {
       <motion.nav
         className={styles.nav}
         animate={show ? 'open' : 'closed'}
+        initial={'closed'}
         variants={variants}
         transition={{ duration: 0.5 }}
         whileTap={{ scale: 0.9 }}

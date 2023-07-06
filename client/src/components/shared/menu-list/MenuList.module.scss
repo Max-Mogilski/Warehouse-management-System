@@ -1,7 +1,6 @@
 .container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -13,7 +12,8 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 15%;
-    padding: 0;
+    gap: 10%;
+    row-gap: 8rem;
+    padding-top: 10%;
   }
 }
