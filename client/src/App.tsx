@@ -21,12 +21,14 @@ import MenagmentMenuPage from './views/wms/menagment-menu-page/MenagmentMenuPage
 import PickMenuPage from './views/wms/pick-menu-page/PickMenuPage';
 import OrderList from './views/wms/inspection-menu-page/order-list/OrderList';
 import OrderDetails from './views/wms/inspection-menu-page/order-list/order-details/OrderDetails';
+import Navigation from '@/components/wms/navigation/Navigation';
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { staleTime: 20000 } },
   });
   const [isLoading, setIsLoading] = useState(true);
+  const user = useUserInfo().user;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,6 +54,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <MainLayout />
+        <Navigation />
         <Routes location={location}>
           <Route path="/" element={<MainPage />} />
           <Route path="/shop" element={<ShopPage />} />

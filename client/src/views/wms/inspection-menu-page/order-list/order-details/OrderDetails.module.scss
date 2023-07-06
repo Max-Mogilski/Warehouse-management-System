@@ -3,19 +3,20 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
   min-height: 100vh;
-  gap: 2rem;
+  width: 100%;
   padding: var(--include-navigation-padding) 2rem;
-  .products-section {
+  .content {
     width: 100%;
-  }
-  @media screen and (min-width: 1000px) {
-    flex-direction: row;
-    .products-section {
-      width: 30%;
-      height: 15rem;
-      overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    @media screen and (min-width: 1000px) {
+      width: 60%;
+      align-items: flex-start;
+      flex-direction: row;
     }
   }
 }

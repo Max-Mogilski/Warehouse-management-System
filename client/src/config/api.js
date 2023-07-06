@@ -2,6 +2,7 @@ const API = {
   GET_ALL_PRODUCTS: 'products',
   LOGIN_USER: 'auth/login',
   REGISTER_USER: 'auth/register',
+  LOGOUT_USER: 'auth/logout',
   CREATE_ORDER: 'orders',
   GET_ALL_ORDERS: 'orders',
   GET_ORDER: (id) => `orders/${id}`,

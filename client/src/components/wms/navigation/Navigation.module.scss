@@ -1,0 +1,108 @@
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  z-index: 100;
+  box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
+  .inner-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--white);
+    text-align: center;
+    h2 {
+      margin-bottom: 2rem;
+      margin-top: 35%;
+      letter-spacing: 0.5rem;
+      font-size: 1.8rem;
+      font-family: 'Montserrat-medium', sans-serif;
+      color: var(--shop-background);
+    }
+    ul {
+      margin-top: 5rem;
+      width: 100%;
+      li {
+        width: 100%;
+        border-bottom: 1px solid var(--text-light);
+        line-height: 3;
+        list-style: none;
+        a {
+          display: inline-block;
+          width: 100%;
+          font-size: 1rem;
+          text-decoration: none;
+          color: var(--text-main);
+          cursor: pointer;
+        }
+      }
+    }
+    .logout {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border: 0;
+      //   border-top: 1px solid var(--text-light);
+      font-size: 1.2rem;
+      padding: 1.5rem 0.5rem;
+      cursor: pointer;
+      background: none;
+    }
+  }
+}
+
+.toggle {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20%;
+  top: 1.5rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+  z-index: 101;
+  overflow: hidden;
+  cursor: pointer;
+  @media screen and (min-width: 600px) {
+    top: 2rem;
+    right: 3rem;
+  }
+
+  .bar {
+    width: 100%;
+    height: 2.5px;
+    border-radius: 10px;
+    background-color: black;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  &.iconOpen .bar:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  &.iconOpen .bar:nth-child(2) {
+    transform: translateX(-50px);
+  }
+
+  &.iconOpen .bar:last-child {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
+
+.blur {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}

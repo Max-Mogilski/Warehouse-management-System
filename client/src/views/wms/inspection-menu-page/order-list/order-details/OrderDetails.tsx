@@ -30,8 +30,8 @@ const OrderDetails = () => {
   return (
     <div className={styles.container}>
       <ButtonBack navigateTo="/cms/inspection/orders" />
-      <DetailsList details={items} />
-      <div className={styles["products-section"]}>
+      <div className={styles.content}>
+        <DetailsList details={items} />
         <ShowItemsButton listNode={<ProductsList />}>Products</ShowItemsButton>
       </div>
     </div>
