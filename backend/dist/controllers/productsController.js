@@ -18,7 +18,15 @@ const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const client_1 = require("@prisma/client");
 exports.prisma = new client_1.PrismaClient();
 const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield exports.prisma.product.findMany();
+    const products = yield exports.prisma.product.findMany({
+        select: {
+            id: true,
+            name: true,
+            price: true,
+            url: true,
+            quantity: true,
+        },
+    });
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: products });
 });
 exports.getAllProducts = getAllProducts;
@@ -29,11 +37,15 @@ exports.getSigleProduct = getSigleProduct;
 // JUST TO AVOID CREATING PRODUCTS MANUALLY - TESTING PURPOSE
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, price, url } = req.body;
+    let { quantity } = req.body;
+    if (!quantity) {
+        quantity = 0;
+    }
     if (!name || !price || !url) {
         throw new bad_request_1.default("Please provide product all fields");
     }
     const product = yield exports.prisma.product.create({
-        data: req.body,
+        data: Object.assign(Object.assign({}, req.body), { quantityStock: quantity }),
     });
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: product });
 });

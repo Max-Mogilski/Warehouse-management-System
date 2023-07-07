@@ -17,6 +17,7 @@ model Product {
   price    Float
   url      String
   quantity Int?    @default(0)
+  quantityStock Int?    @default(0)
  orderProducts  OrderProduct[] @relation("ProductToOrderProduct")
 }
 model User {

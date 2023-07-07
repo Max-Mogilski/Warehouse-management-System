@@ -8,12 +8,13 @@ const ProductsList = ({
   products: Product[];
   isLoading: boolean;
 }) => {
+  console.log(products);
   return (
     <div className={styles.container}>
       {products?.map((product) => (
         <ProductCard
           key={product.id}
-          delay={products[1].id === product.id ? 0.35 : 0}
+          delay={products[1]?.id === product.id ? 0.35 : 0}
           id={product.id}
           url={product.url}
           name={product.name}
