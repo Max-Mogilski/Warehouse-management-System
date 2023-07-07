@@ -8,7 +8,6 @@ const ProductsList = ({
   products: Product[];
   isLoading: boolean;
 }) => {
-  console.log(products);
   return (
     <div className={styles.container}>
       {products?.map((product) => (

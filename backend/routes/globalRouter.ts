@@ -8,6 +8,7 @@ import errorHandlerMiddleware from "../middleware/error-handler";
 import { router as productRouter } from "./productsRouter";
 import { router as authRouter } from "./authRoutes";
 import { router as orderRouter } from "./orderRoutes";
+import { router as locationRouter } from "./locationRoutes";
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ const router = express.Router();
 router.use("/products", productRouter);
 router.use("/auth", authRouter);
 router.use("/orders", orderRouter);
+router.use("/locations", locationRouter);
 
 router.use(notFoundMiddleware);
 router.use(errorHandlerMiddleware);
