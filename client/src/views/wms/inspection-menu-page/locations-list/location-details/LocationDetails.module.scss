@@ -1,9 +1,9 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 70vh;
   width: 100%;
   padding: 0 2rem;
   .content {
@@ -15,8 +15,10 @@
     gap: 2rem;
     @media screen and (min-width: 1000px) {
       width: 60%;
-      align-items: flex-start;
       flex-direction: row;
     }
+  }
+  @media screen and (min-width: 1000px) {
+    justify-content: center;
   }
 }

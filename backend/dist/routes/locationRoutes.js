@@ -7,4 +7,5 @@ exports.router = void 0;
 const express_1 = __importDefault(require("express"));
 const locationController_1 = require("../controllers/locationController");
 exports.router = express_1.default.Router();
-exports.router.post("/", locationController_1.createLocation);
+exports.router.route("/").post(locationController_1.createLocation).get(locationController_1.getAllLocations);
+exports.router.route("/:id").get(locationController_1.getLocation);

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import MainPage from './views/main-page/MainPage';
-import MainLayout from './layouts/MainLayout';
+import MainLayout from './layouts/wms/MainLayout';
 import ShopPage from './views/shop/shop-page/ShopPage';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -22,13 +22,16 @@ import PickMenuPage from './views/wms/pick-menu-page/PickMenuPage';
 import OrderList from './views/wms/inspection-menu-page/order-list/OrderList';
 import OrderDetails from './views/wms/inspection-menu-page/order-list/order-details/OrderDetails';
 import Navigation from '@/components/wms/navigation/Navigation';
+import CreateMenu from './views/wms/menagment-menu-page/create-menu/CreateMenu';
+import LocationDetails from './views/wms/inspection-menu-page/locations-list/location-details/LocationDetails';
+import LocationsList from './views/wms/inspection-menu-page/locations-list/LocationsList';
+import CmsUpperLayout from './layouts/wms/CmsUpperLayout';
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { staleTime: 20000 } },
   });
   const [isLoading, setIsLoading] = useState(true);
-  const user = useUserInfo().user;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -54,7 +57,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <MainLayout />
-        <Navigation />
+        <CmsUpperLayout />
         <Routes location={location}>
           <Route path="/" element={<MainPage />} />
           <Route path="/shop" element={<ShopPage />} />
@@ -102,10 +105,34 @@ function App() {
             }
           />
           <Route
+            path="/cms/inspection/locations"
+            element={
+              <Protected>
+                <LocationsList />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection/locations/:id"
+            element={
+              <Protected>
+                <LocationDetails />
+              </Protected>
+            }
+          />
+          <Route
             path="/cms/menagment"
             element={
               <Protected>
                 <MenagmentMenuPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/menagment/create"
+            element={
+              <Protected>
+                <CreateMenu />
               </Protected>
             }
           />

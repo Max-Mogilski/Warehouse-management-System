@@ -8,7 +8,7 @@ const options: MenuButtonProps[] = [
 ];
 
 const MenuPage = () => {
-  return <MenuList options={options} previousRoute="/" />;
+  return <MenuList options={options} />;
 };
 
 export default MenuPage;

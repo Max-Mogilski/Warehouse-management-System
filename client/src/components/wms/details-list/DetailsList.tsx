@@ -4,7 +4,11 @@ import { DetailsListProps } from './types';
 
 const DetailsList = ({ details }: DetailsListProps) => {
   if (!details) {
-    return <Loader />;
+    return (
+      <div className={styles['container-loader']}>
+        <Loader />
+      </div>
+    );
   }
   return (
     <ul className={styles.container}>

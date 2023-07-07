@@ -5,7 +5,7 @@ import Bar from '@/components/shop/bar/Bar';
 import { useLogoutUser } from './query';
 import { useUserInfo } from '@/stores/user';
 import { toast } from 'react-hot-toast';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const variants: Variants = {
   open: { opacity: 1, x: 0 },
@@ -13,13 +13,8 @@ const variants: Variants = {
 };
 
 const Navigation = () => {
-  const location = useLocation();
   const useLogout = useLogoutUser();
   const [show, setShow] = useState(false);
-
-  if (!location.pathname.startsWith('/cms') || !useUserInfo.getState().user) {
-    return <></>;
-  }
 
   const handleLogout = () => {
     useLogout.mutate(undefined, {

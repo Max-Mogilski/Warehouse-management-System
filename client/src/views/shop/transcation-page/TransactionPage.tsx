@@ -1,4 +1,4 @@
-import ShopLayout from '@/layouts/ShopLayout';
+import ShopLayout from '@/layouts/shop/ShopLayout';
 import Loader from '@/components/shared/loader/Loader';
 import styles from './TransactionPage.module.scss';
 import { useState } from 'react';

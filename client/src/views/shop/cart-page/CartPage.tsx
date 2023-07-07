@@ -1,5 +1,5 @@
 import CartItem from '@/components/shop/cart-item/CartItem';
-import ShopLayout from '@/layouts/ShopLayout';
+import ShopLayout from '@/layouts/shop/ShopLayout';
 import { useCartStore } from '@/stores/cartStore';
 import styles from './CartPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';

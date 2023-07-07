@@ -1,5 +1,6 @@
 export default interface MenuButtonProps {
-  path: string;
+  path?: string;
   content: string;
   disabled?: boolean;
+  onClick?: () => void;
 }

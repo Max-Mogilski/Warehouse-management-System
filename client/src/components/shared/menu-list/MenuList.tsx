@@ -6,17 +6,25 @@ import Loader from '../loader/Loader';
 
 const MenuList = ({
   options,
-  previousRoute,
+  isLoading,
 }: {
   options: MenuButtonProps[] | null;
-  previousRoute?: string;
+  isLoading?: boolean;
 }) => {
+  if (isLoading) {
+    return (
+      <div className={styles.container}>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <nav className={styles.container}>
-      {previousRoute && <ButtonBack big={true} navigateTo={previousRoute} />}
       {options ? (
         options?.map((button) => (
           <MenuButton
+            onClick={button.onClick}
             key={button.content}
             content={button.content}
             path={button.path}

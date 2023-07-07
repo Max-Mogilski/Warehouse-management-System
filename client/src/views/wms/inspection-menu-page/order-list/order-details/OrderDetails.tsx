@@ -29,7 +29,6 @@ const OrderDetails = () => {
 
   return (
     <div className={styles.container}>
-      <ButtonBack navigateTo="/cms/inspection/orders" />
       <div className={styles.content}>
         <DetailsList details={items} />
         <ShowItemsButton listNode={<ProductsList />}>Products</ShowItemsButton>

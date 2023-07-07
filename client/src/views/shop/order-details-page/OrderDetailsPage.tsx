@@ -1,4 +1,4 @@
-import ShopLayout from '@/layouts/ShopLayout';
+import ShopLayout from '@/layouts/shop/ShopLayout';
 import styles from './OrderDetailsPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';
 import Button from '@/components/shop/button/Button';

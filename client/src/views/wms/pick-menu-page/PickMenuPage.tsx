@@ -6,7 +6,7 @@ const options: MenuButtonProps[] = [
 ];
 
 const PickMenuPage = () => {
-  return <MenuList options={options} previousRoute="/cms" />;
+  return <MenuList options={options} />;
 };
 
 export default PickMenuPage;
