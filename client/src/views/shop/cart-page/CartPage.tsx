@@ -4,8 +4,8 @@ import { useCartStore } from '@/stores/cartStore';
 import styles from './CartPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';
 import emptyCart from '@/assets/icons/empty-cart.svg';
-import Button from '@/components/shop/button/Button';
-import ButtonBack from '@/components/shop/button/ButtonBack';
+import Button from '@/components/shared/button/Button';
+import ButtonBack from '@/components/shared/button/ButtonBack';
 
 const Cart = () => {
   const store = useCartStore((state) => state);

@@ -3,8 +3,9 @@ import styles from './LocationDetails.module.scss';
 import DetailsList from '@/components/wms/details-list/DetailsList';
 import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
-import ButtonBack from '@/components/shop/button/ButtonBack';
+import ButtonBack from '@/components/shared/button/ButtonBack';
 import { useLocationQuery } from './query';
+import QRcodeCard from '@/components/wms/QRcode/QRCode';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const OrderDetails = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <DetailsList details={items} />
+        <QRcodeCard value={id!} />
       </div>
     </div>
   );

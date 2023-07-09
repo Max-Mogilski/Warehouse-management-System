@@ -5,7 +5,7 @@ import { dynamicListProps } from './types';
 
 const DynamicList = ({ queryFn, optionsFn }: dynamicListProps) => {
   const [options, setOptions] = useState<MenuButtonProps[] | null>(null);
-  const { data } = queryFn();
+  const { data, isLoading } = queryFn();
 
   useEffect(() => {
     if (data) {
@@ -14,7 +14,7 @@ const DynamicList = ({ queryFn, optionsFn }: dynamicListProps) => {
     }
   }, [data]);
 
-  return <MenuList options={options} />;
+  return <MenuList isLoading={isLoading} options={options} />;
 };
 
 export default DynamicList;

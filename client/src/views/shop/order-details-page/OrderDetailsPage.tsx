@@ -1,8 +1,8 @@
 import ShopLayout from '@/layouts/shop/ShopLayout';
 import styles from './OrderDetailsPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';
-import Button from '@/components/shop/button/Button';
-import ButtonBack from '@/components/shop/button/ButtonBack';
+import Button from '@/components/shared/button/Button';
+import ButtonBack from '@/components/shared/button/ButtonBack';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/shared/input/FormInput';
 import { useEffect, useState } from 'react';

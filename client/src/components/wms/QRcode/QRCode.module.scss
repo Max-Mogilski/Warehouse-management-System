@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  img {
+    width: 50%;
+  }
+  button {
+    width: 40%;
+    border-radius: 5px;
+    background-color: var();
+    border: none;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-main);
+      text-decoration: none;
+      width: 100%;
+      height: 2.5rem;
+    }
+  }
+}

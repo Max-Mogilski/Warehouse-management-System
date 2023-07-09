@@ -3,7 +3,7 @@ import Loader from '@/components/shared/loader/Loader';
 import styles from './TransactionPage.module.scss';
 import { useState } from 'react';
 import SuccessAnimation from './SuccessAnimation';
-import Button from '@/components/shop/button/Button';
+import Button from '@/components/shared/button/Button';
 
 const TransactionPage = () => {
   const [isLoading, setIsLoading] = useState(true);

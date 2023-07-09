@@ -1,4 +1,3 @@
-import ButtonBack from '@/components/shop/button/ButtonBack';
 import MenuButton from '../menu-button/MenuButton';
 import MenuButtonProps from '../menu-button/types';
 import styles from './MenuList.module.scss';

@@ -4,7 +4,7 @@ import DetailsList from '@/components/wms/details-list/DetailsList';
 import { useOrderQuery } from './query';
 import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
-import ButtonBack from '@/components/shop/button/ButtonBack';
+import ButtonBack from '@/components/shared/button/ButtonBack';
 import ShowItemsButton from '@/components/wms/ShowItemsButton/ShowItemsButton';
 import ProductsList from './products-list/ProductsList';
 

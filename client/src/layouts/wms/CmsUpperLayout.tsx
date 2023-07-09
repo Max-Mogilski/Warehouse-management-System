@@ -1,4 +1,4 @@
-import ButtonBack from '@/components/shop/button/ButtonBack';
+import ButtonBack from '@/components/shared/button/ButtonBack';
 import Navigation from '@/components/wms/navigation/Navigation';
 import styles from './CmsUpperLayout.module.scss';
 import { useUserInfo } from '@/stores/user';
