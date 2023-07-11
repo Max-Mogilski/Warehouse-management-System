@@ -3,7 +3,6 @@ import styles from './LocationDetails.module.scss';
 import DetailsList from '@/components/wms/details-list/DetailsList';
 import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
-import ButtonBack from '@/components/shared/button/ButtonBack';
 import { useLocationQuery } from './query';
 import QRcodeCard from '@/components/wms/qr-code/QRCode';
 
@@ -16,7 +15,7 @@ const OrderDetails = () => {
     if (data) {
       setItems([
         { key: 'Location ID', value: id! },
-        { key: 'Filled', value: data.palletId ? 'Yes' : 'No' },
+        { key: 'Filled', value: data?.palletId ? 'Yes' : 'No' },
       ]);
     }
   }, [data]);
@@ -25,7 +24,12 @@ const OrderDetails = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <DetailsList details={items} />
-        <QRcodeCard value={id!} />
+        <div className={styles.buttons}>
+          <QRcodeCard title="Location QR" value={id!} />
+          {data?.palletId && (
+            <QRcodeCard title="Pallet QR" value={data?.palletId} />
+          )}
+        </div>
       </div>
     </div>
   );
