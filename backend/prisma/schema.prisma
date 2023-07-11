@@ -67,6 +67,7 @@ model Location {
 model Pallet {
   id        String   @id @default(uuid())
   location  Location?
+  locationId  String?
 }
 
 enum OrderStatus{

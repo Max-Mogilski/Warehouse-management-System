@@ -12,6 +12,7 @@ const productsRouter_1 = require("./productsRouter");
 const authRoutes_1 = require("./authRoutes");
 const orderRoutes_1 = require("./orderRoutes");
 const locationRoutes_1 = require("./locationRoutes");
+const palletRoutes_1 = require("./palletRoutes");
 const authentication_1 = require("../middleware/authentication");
 const router = express_1.default.Router();
 // routes
@@ -19,6 +20,7 @@ router.use("/products", productsRouter_1.router);
 router.use("/auth", authRoutes_1.router);
 router.use("/orders", orderRoutes_1.router);
 router.use("/locations", authentication_1.authenticateUser, locationRoutes_1.router);
+router.use("/pallets", authentication_1.authenticateUser, palletRoutes_1.router);
 router.use(not_found_1.default);
 router.use(error_handler_1.default);
 exports.default = router;

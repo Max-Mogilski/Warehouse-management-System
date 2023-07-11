@@ -10,7 +10,6 @@ const QRcodeCard = ({ value }: { value: string }) => {
   useEffect(() => {
     QRCode.toDataURL(value, (error, value) => {
       if (error) return console.log(error);
-
       setQrcode(value);
     });
   }, []);
