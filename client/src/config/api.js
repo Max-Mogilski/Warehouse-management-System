@@ -5,6 +5,7 @@ const API = {
   CREATE_ORDER: 'orders',
   CREATE_LOCATION: 'locations',
   CREATE_PALLET: 'pallets',
+  CREATE_PRODUCT: 'products',
   GET_ALL_PRODUCTS: 'products',
   GET_ALL_ORDERS: 'orders',
   GET_ALL_LOCATIONS: 'locations',
@@ -41,6 +42,14 @@ export const defaultSchema = {
   },
   pallet: {
     locationId: '',
+  },
+  product: {
+    id: '',
+    name: '',
+    quantity: 0,
+    price: 0,
+    weight: 0,
+    url: '',
   },
 };
 

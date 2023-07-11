@@ -1,8 +1,6 @@
 import { HTMLInputTypeAttribute } from 'react';
 import {
   ControllerRenderProps,
-  DeepMap,
-  FieldError,
   FieldValues,
   Path,
   RegisterOptions,

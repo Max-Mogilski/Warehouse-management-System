@@ -3,6 +3,6 @@ import { ReactNode } from 'react';
 export interface WmsButtonProps {
   children: ReactNode;
   type?: 'button' | 'submit' | 'reset' | undefined;
-  disabled: boolean;
+  disabled?: boolean;
   onclick?: () => void;
 }

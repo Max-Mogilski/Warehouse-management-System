@@ -24,6 +24,7 @@ const CreateMenu = () => {
       onClick: handleCreateLocation,
     },
     { content: 'Pallet', path: '/cms/menagment/create/pallet' },
+    { content: 'Product', path: '/cms/menagment/create/product' },
   ];
 
   return <MenuList options={options} isLoading={createMutation.isLoading} />;

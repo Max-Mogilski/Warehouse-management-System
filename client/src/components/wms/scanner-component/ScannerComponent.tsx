@@ -1,7 +1,14 @@
 import FormInput from '@/components/shared/input/FormInput';
 import QRscanner from '../scanner/Scanner';
+import { ScannerComponentProps } from './types';
 
-const ScannerComponent = ({ control, errors, name, placeholder }: any) => {
+const ScannerComponent = ({
+  control,
+  errors,
+  name,
+  placeholder,
+  required = false,
+}: ScannerComponentProps) => {
   return (
     <>
       <QRscanner />
@@ -11,9 +18,9 @@ const ScannerComponent = ({ control, errors, name, placeholder }: any) => {
         placeholder={placeholder}
         control={control}
         error={errors[name]}
-        required={true}
+        required={required}
         rules={{
-          required: 'This field is required!',
+          required: required ? 'This field is required!' : false,
         }}
       />
     </>

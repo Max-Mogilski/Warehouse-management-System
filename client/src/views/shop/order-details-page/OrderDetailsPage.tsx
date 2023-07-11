@@ -3,7 +3,7 @@ import styles from './OrderDetailsPage.module.scss';
 import Bar from '@/components/shop/bar/Bar';
 import Button from '@/components/shared/button/Button';
 import ButtonBack from '@/components/shared/button/ButtonBack';
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import FormInput from '@/components/shared/input/FormInput';
 import { useEffect, useState } from 'react';
 import {
@@ -30,7 +30,7 @@ const OrderDetailsPage = () => {
   const placeOrderMutation = usePlaceOrder(queryKeys.productsLists());
   const navigate = useNavigate();
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (store.cart.length === 0) {
       toast.error("Orders can't be placed without items");
       return;

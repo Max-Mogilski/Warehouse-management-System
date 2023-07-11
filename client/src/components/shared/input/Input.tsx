@@ -43,6 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             name={name}
             ref={ref}
+            step={0.01}
             spellCheck="false"
             onChange={handleInputChange}
             {...inputProps}

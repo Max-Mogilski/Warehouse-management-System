@@ -1,5 +1,5 @@
 import ScannerComponent from '@/components/wms/scanner-component/ScannerComponent';
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Pallet.module.scss';
 import WmsButton from '@/components/wms/wms-button/WmsButton';
 import { useCreatePalletMutation } from './query';
@@ -21,7 +21,7 @@ const Pallet = () => {
   const navigate = useNavigate();
   const scannerState = useScanner();
 
-  const createPallet = (data: any) => {
+  const createPallet: SubmitHandler<FieldValues> = (data) => {
     createMutation.mutate(schemaFiller(data, defaultSchema.pallet), {
       onSuccess: () => {
         toast.success('Pallet has been sucessfully created!');
@@ -53,6 +53,7 @@ const Pallet = () => {
             name={'locationId'}
             placeholder="Location ID"
             errors={errors}
+            required={true}
           />
         )}
         <WmsButton type="submit" disabled={createMutation.isLoading}>

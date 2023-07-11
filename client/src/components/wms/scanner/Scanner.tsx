@@ -44,7 +44,9 @@ const QRscanner = () => {
       startScanning();
     }
     return () => {
-      scanner?.stop();
+      if (scanner) {
+        scanner?.stop();
+      }
     };
   }, [camera]);
 
