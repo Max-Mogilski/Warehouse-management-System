@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createProduct = exports.getSigleProduct = exports.getAllProducts = exports.prisma = void 0;
+exports.createProduct = exports.getSingleProduct = exports.getAllProducts = exports.prisma = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const client_1 = require("@prisma/client");
@@ -30,10 +30,19 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: products });
 });
 exports.getAllProducts = getAllProducts;
-const getSigleProduct = (req, res) => {
-    res.status(http_status_codes_1.StatusCodes.OK).json({ product: {} });
-};
-exports.getSigleProduct = getSigleProduct;
+const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const productId = req.params.id;
+    const product = yield exports.prisma.product.findFirst({
+        where: {
+            id: productId,
+        },
+    });
+    if (!product) {
+        throw new bad_request_1.default(`Order with id ${productId} doesn't exists!`);
+    }
+    res.status(http_status_codes_1.StatusCodes.OK).json({ data: product });
+});
+exports.getSingleProduct = getSingleProduct;
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, price, url } = req.body;
     let { quantity } = req.body;

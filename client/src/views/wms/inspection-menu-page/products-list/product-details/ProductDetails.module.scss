@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 90vh;
+  width: 100%;
+  padding: 0 2rem;
+  .img {
+    width: 100%;
+    @media screen and (min-width: 1000px) {
+      width: 20%;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+}

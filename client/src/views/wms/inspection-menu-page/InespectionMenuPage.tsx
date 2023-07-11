@@ -3,7 +3,7 @@ import MenuList from '@/components/shared/menu-list/MenuList';
 
 const options: MenuButtonProps[] = [
   { content: 'Orders', path: '/cms/inspection/orders' },
-  { content: 'Products', path: '/cms/inspection/orders', disabled: true },
+  { content: 'Products', path: '/cms/inspection/products' },
   { content: 'Locations', path: '/cms/inspection/locations' },
   { content: 'Users', path: '/cms/inspection/users', disabled: true },
 ];

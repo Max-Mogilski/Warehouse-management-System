@@ -17,8 +17,17 @@ export const getAllProducts = async (req: Request, res: Response) => {
 	res.status(StatusCodes.OK).json({ data: products });
 };
 
-export const getSigleProduct = (req: Request, res: Response) => {
-	res.status(StatusCodes.OK).json({ product: {} });
+export const getSingleProduct = async (req: Request, res: Response) => {
+	const productId = req.params.id;
+	const product = await prisma.product.findFirst({
+		where: {
+			id: productId,
+		},
+	});
+	if (!product) {
+		throw new BadRequestError(`Order with id ${productId} doesn't exists!`);
+	}
+	res.status(StatusCodes.OK).json({ data: product });
 };
 
 export const createProduct = async (req: Request, res: Response) => {

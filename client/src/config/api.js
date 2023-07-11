@@ -9,6 +9,7 @@ const API = {
   GET_ALL_PRODUCTS: 'products',
   GET_ALL_ORDERS: 'orders',
   GET_ALL_LOCATIONS: 'locations',
+  GET_PRODUCT: (id) => `products/${id}`,
   GET_ORDER: (id) => `orders/${id}`,
   GET_LOCATION: (id) => `locations/${id}`,
   GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,

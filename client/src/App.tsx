@@ -27,6 +27,9 @@ import LocationsList from './views/wms/inspection-menu-page/locations-list/Locat
 import CmsUpperLayout from './layouts/wms/CmsUpperLayout';
 import Pallet from './views/wms/menagment-menu-page/create-menu/pallet/Pallet';
 import Product from './views/wms/menagment-menu-page/create-menu/product/Product';
+import ProductsList from './views/wms/inspection-menu-page/order-list/order-details/products-list/ProductsList';
+import ProductDetails from './views/wms/inspection-menu-page/products-list/product-details/ProductDetails';
+import ProductsInspectionList from './views/wms/inspection-menu-page/products-list/ProductsList';
 
 function App() {
   const queryClient = new QueryClient({
@@ -118,6 +121,22 @@ function App() {
             element={
               <Protected>
                 <LocationDetails />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection/products"
+            element={
+              <Protected>
+                <ProductsInspectionList />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/inspection/products/:id"
+            element={
+              <Protected>
+                <ProductDetails />
               </Protected>
             }
           />
