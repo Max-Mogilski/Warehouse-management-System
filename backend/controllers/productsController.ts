@@ -21,13 +21,18 @@ export const getSigleProduct = (req: Request, res: Response) => {
 	res.status(StatusCodes.OK).json({ product: {} });
 };
 
-// JUST TO AVOID CREATING PRODUCTS MANUALLY - TESTING PURPOSE
 export const createProduct = async (req: Request, res: Response) => {
 	const { name, price, url } = req.body;
-	let { quantity } = req.body;
+	let { quantity, id } = req.body;
 
 	if (!quantity) {
 		quantity = 0;
+	}
+
+	const productObj = { ...req.body, quantityStock: quantity };
+
+	if (id) {
+		productObj.id = id;
 	}
 
 	if (!name || !price || !url) {

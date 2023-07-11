@@ -34,12 +34,15 @@ const getSigleProduct = (req, res) => {
     res.status(http_status_codes_1.StatusCodes.OK).json({ product: {} });
 };
 exports.getSigleProduct = getSigleProduct;
-// JUST TO AVOID CREATING PRODUCTS MANUALLY - TESTING PURPOSE
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, price, url } = req.body;
-    let { quantity } = req.body;
+    let { quantity, id } = req.body;
     if (!quantity) {
         quantity = 0;
+    }
+    const productObj = Object.assign(Object.assign({}, req.body), { quantityStock: quantity });
+    if (id) {
+        productObj.id = id;
     }
     if (!name || !price || !url) {
         throw new bad_request_1.default("Please provide product all fields");
