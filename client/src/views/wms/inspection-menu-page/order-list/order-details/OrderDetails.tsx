@@ -5,7 +5,7 @@ import { useOrderQuery } from './query';
 import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
 import ButtonBack from '@/components/shared/button/ButtonBack';
-import ShowItemsButton from '@/components/wms/ShowItemsButton/ShowItemsButton';
+import ShowItemsButton from '@/components/wms/show-item-button/ShowItemsButton';
 import ProductsList from './products-list/ProductsList';
 
 const OrderDetails = () => {

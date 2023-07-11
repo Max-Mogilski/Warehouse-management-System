@@ -4,6 +4,7 @@ const API = {
   LOGOUT_USER: 'auth/logout',
   CREATE_ORDER: 'orders',
   CREATE_LOCATION: 'locations',
+  CREATE_PALLET: 'pallets',
   GET_ALL_PRODUCTS: 'products',
   GET_ALL_ORDERS: 'orders',
   GET_ALL_LOCATIONS: 'locations',
@@ -37,6 +38,9 @@ export const defaultSchema = {
   login: {
     email: '',
     password: '',
+  },
+  pallet: {
+    locationId: '',
   },
 };
 

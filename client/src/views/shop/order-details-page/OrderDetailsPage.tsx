@@ -14,7 +14,7 @@ import {
 } from '@/utils/globalValidation';
 import { useCartStore } from '@/stores/cartStore';
 import { usePlaceOrder } from './query';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { queryKeys } from '../shop-page/queries';
 import { defaultSchema, schemaFiller } from '@/config/api';

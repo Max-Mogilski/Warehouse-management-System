@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
 import styles from './QRcode.module.scss';
 import { Link } from 'react-router-dom';
-import ShowItemsButton from '../ShowItemsButton/ShowItemsButton';
+import ShowItemsButton from '../show-item-button/ShowItemsButton';
 
 const QRcodeCard = ({ value }: { value: string }) => {
   const [qrcode, setQrcode] = useState('');

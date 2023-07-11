@@ -21,11 +21,11 @@ import MenagmentMenuPage from './views/wms/menagment-menu-page/MenagmentMenuPage
 import PickMenuPage from './views/wms/pick-menu-page/PickMenuPage';
 import OrderList from './views/wms/inspection-menu-page/order-list/OrderList';
 import OrderDetails from './views/wms/inspection-menu-page/order-list/order-details/OrderDetails';
-import Navigation from '@/components/wms/navigation/Navigation';
 import CreateMenu from './views/wms/menagment-menu-page/create-menu/CreateMenu';
 import LocationDetails from './views/wms/inspection-menu-page/locations-list/location-details/LocationDetails';
 import LocationsList from './views/wms/inspection-menu-page/locations-list/LocationsList';
 import CmsUpperLayout from './layouts/wms/CmsUpperLayout';
+import Pallet from './views/wms/menagment-menu-page/create-menu/pallet/Pallet';
 
 function App() {
   const queryClient = new QueryClient({
@@ -133,6 +133,14 @@ function App() {
             element={
               <Protected>
                 <CreateMenu />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/menagment/create/pallet"
+            element={
+              <Protected>
+                <Pallet />
               </Protected>
             }
           />

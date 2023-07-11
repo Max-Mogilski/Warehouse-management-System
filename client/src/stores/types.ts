@@ -28,3 +28,8 @@ export type UserStoreState = {
   user: User | null | undefined;
   setUser: (payload: User) => void;
 };
+
+export type ScannerStoreState = {
+  onScanned: (value: string) => void;
+  setOnScanned: (payload: (value: string) => void) => void;
+};

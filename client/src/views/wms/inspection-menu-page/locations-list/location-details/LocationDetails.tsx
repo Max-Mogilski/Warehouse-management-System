@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
 import ButtonBack from '@/components/shared/button/ButtonBack';
 import { useLocationQuery } from './query';
-import QRcodeCard from '@/components/wms/QRcode/QRCode';
+import QRcodeCard from '@/components/wms/qr-code/QRCode';
 
 const OrderDetails = () => {
   const { id } = useParams();
