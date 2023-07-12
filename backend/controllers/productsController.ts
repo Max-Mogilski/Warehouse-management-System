@@ -48,3 +48,52 @@ export const createProduct = async (req: Request, res: Response) => {
 
 	res.status(StatusCodes.OK).json({ data: product });
 };
+
+export const refillProduct = async (req: Request, res: Response) => {
+	const { productId, productQuantity, palletId } = req.body;
+
+	if (!productId || !productQuantity || !palletId)
+		throw new BadRequestError("Please provide all required values!");
+
+	const product = await prisma.product.findUnique({ where: { id: productId } });
+
+	if (!product)
+		throw new BadRequestError(`Product with id ${productId} doesn't exists!`);
+
+	const pallet = await prisma.pallet.findUnique({ where: { id: palletId } });
+
+	if (!pallet)
+		throw new BadRequestError(`Pallet with id ${palletId} doesn't exists!`);
+
+	const palletProduct = await prisma.palletProduct.findFirst({
+		where: {
+			productId,
+			palletId,
+		},
+	});
+
+	if (palletProduct) {
+		await prisma.palletProduct.update({
+			where: { id: palletProduct.id },
+			data: { quantity: palletProduct.quantity + productQuantity },
+		});
+	} else {
+		await prisma.palletProduct.create({
+			data: {
+				palletId: pallet.id,
+				productId: product.id,
+				quantity: productQuantity,
+			},
+		});
+	}
+
+	await prisma.product.update({
+		where: { id: productId },
+		data: {
+			quantity: product.quantity + productQuantity,
+			quantityStock: product.quantityStock + productQuantity,
+		},
+	});
+
+	res.status(StatusCodes.OK).json({ msg: "ok" });
+};

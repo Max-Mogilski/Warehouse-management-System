@@ -17,6 +17,7 @@ model Product {
   quantityStock  Int?           @default(0)
   weight Float? @default(0)
   orderProducts  OrderProduct[] @relation("ProductToOrderProduct")
+  palletProducts PalletProduct[]
 }
 
 model User {
@@ -66,9 +67,21 @@ model Location {
 
 
 model Pallet {
+  id             String           @id @default(uuid())
+  location       Location?
+  locationId     String?
+  palletProducts PalletProduct[]
+}
+
+model PalletProduct {
   id        String   @id @default(uuid())
-  location  Location?
-  locationId  String?
+  quantity  Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  pallet    Pallet   @relation(fields: [palletId], references: [id])
+  palletId  String
+
+  @@unique([productId, palletId])
 }
 
 enum OrderStatus{
