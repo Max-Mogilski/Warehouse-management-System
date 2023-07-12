@@ -4,6 +4,7 @@ import DetailsList from '@/components/wms/details-list/DetailsList';
 import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
 import { useProductQuery } from './query';
+import BarcodeComponent from '@/components/wms/barcode/Barcode';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -26,8 +27,11 @@ const ProductDetails = () => {
 
   return (
     <div className={styles.container}>
-      <img src={data?.url} className={styles.img} />
-      <DetailsList details={items} />
+      <div className={styles.content}>
+        <img src={data?.url} className={styles.img} />
+        <DetailsList details={items} />
+        <BarcodeComponent value={id!} title="Barcode" />
+      </div>
     </div>
   );
 };
