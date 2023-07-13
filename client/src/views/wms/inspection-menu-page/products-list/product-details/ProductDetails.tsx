@@ -32,7 +32,7 @@ const ProductDetails = () => {
           <img src={data?.url} className={styles.img} />
           <DetailsList details={items} />
         </div>
-        <BarcodeComponent value={id!} title="Barcode" />
+        {data && <BarcodeComponent value={id!} title="Barcode" />}
       </div>
     </div>
   );
