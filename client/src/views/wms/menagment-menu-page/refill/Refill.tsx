@@ -1,6 +1,13 @@
 import MultiStepForm from '@/components/wms/multistep-form/MultistepForm';
 import WmsButton from '@/components/wms/wms-button/WmsButton';
-import { useEffect, useMemo, useState } from 'react';
+import {
+  RefCallback,
+  RefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Refill.module.scss';
 import { useScanner } from '@/stores/scannerStore';
@@ -18,7 +25,6 @@ const Refill = () => {
     handleSubmit,
     control,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
   const scannerState = useScanner();
@@ -30,6 +36,12 @@ const Refill = () => {
 
   const nextPage = () => {
     setStep((prev) => prev + 1);
+  };
+
+  const clearForm = () => {
+    setValue('productId', '');
+    setValue('palletId', '');
+    setValue('productQuantity', '');
   };
 
   const pages = [
@@ -80,11 +92,16 @@ const Refill = () => {
             name="productQuantity"
             placeholder="Quantity"
             control={control}
+            step={1}
             error={errors.productQuantity}
             required={true}
             type="number"
             rules={{
               required: 'This field is required!',
+              min: {
+                value: 1,
+                message: 'Quantity has to be >= 1',
+              },
             }}
           />
         </>
@@ -106,6 +123,7 @@ const Refill = () => {
         onError: (error: any) => {
           toast.error(error?.response?.data?.msg);
           setStep(INITIAL_STEP);
+          clearForm();
         },
       }
     );

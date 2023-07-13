@@ -24,4 +24,5 @@ export interface InputProps
   required?: boolean;
   color?: string;
   animationDelay?: number;
+  step?: number;
 }

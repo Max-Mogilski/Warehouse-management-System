@@ -13,6 +13,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       required,
       color,
       error,
+      step = 0.1,
       animationDelay,
       ...inputProps
     },
@@ -43,7 +44,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             name={name}
             ref={ref}
-            step={0.01}
+            step={step}
             spellCheck="false"
             onChange={handleInputChange}
             {...inputProps}
