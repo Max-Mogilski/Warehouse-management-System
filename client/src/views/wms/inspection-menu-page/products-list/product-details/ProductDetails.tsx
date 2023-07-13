@@ -28,8 +28,10 @@ const ProductDetails = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <img src={data?.url} className={styles.img} />
-        <DetailsList details={items} />
+        <div className={styles.details}>
+          <img src={data?.url} className={styles.img} />
+          <DetailsList details={items} />
+        </div>
         <BarcodeComponent value={id!} title="Barcode" />
       </div>
     </div>

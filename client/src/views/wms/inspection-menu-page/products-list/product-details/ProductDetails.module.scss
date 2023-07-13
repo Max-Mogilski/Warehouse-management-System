@@ -15,15 +15,26 @@
     align-items: center;
     flex-direction: column;
     gap: 2rem;
+    max-width: 50%;
     @media screen and (min-width: 1000px) {
-      flex-direction: row-reverse;
       margin-left: 7%;
     }
-  }
-  .img {
-    width: 100%;
-    @media screen and (min-width: 1000px) {
-      width: 20%;
+    .details {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 2rem;
+      @media screen and (min-width: 1000px) {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+      .img {
+        width: 100%;
+        @media screen and (min-width: 1000px) {
+          width: 35%;
+        }
+      }
     }
   }
 }
