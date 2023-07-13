@@ -2,39 +2,44 @@ import MultiStepForm from '@/components/wms/multistep-form/MultistepForm';
 import WmsButton from '@/components/wms/wms-button/WmsButton';
 import { useEffect, useMemo, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import styles from './Refill.module.scss';
+import styles from './RelocateProduct.module.scss';
 import { useScanner } from '@/stores/scannerStore';
 import QRscanner from '@/components/wms/scanner/Scanner';
 import FormInput from '@/components/shared/input/FormInput';
-import { useRefillProductMutation } from './query';
 import { defaultSchema, schemaFiller } from '@/config/api';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useRelocateProductMutation } from './query';
 
 const INITIAL_STEP = 0;
 
-const Refill = () => {
+const RelocateProduct = () => {
   const {
     handleSubmit,
     control,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
   const scannerState = useScanner();
   const [step, setStep] = useState(INITIAL_STEP);
-  const refillMutation = useRefillProductMutation();
+  const relocateMutation = useRelocateProductMutation();
   const navigate = useNavigate();
 
-  const scannerPages = useMemo(() => ['productId', 'palletId'], []);
+  const scannerPages = useMemo(
+    () => ['currentPalletId', 'productId', 'quantity', 'destinationPalletId'],
+    []
+  );
 
   const nextPage = () => {
     setStep((prev) => prev + 1);
   };
 
   const clearForm = () => {
-    setValue('productId', '');
+    setValue('currentPalletId', '');
     setValue('palletId', '');
     setValue('productQuantity', '');
+    setValue('destinationPalletId', '');
   };
 
   const pages = [
@@ -44,11 +49,11 @@ const Refill = () => {
         <>
           {step === 0 && <QRscanner />}
           <FormInput
-            id="productId"
-            name="productId"
-            placeholder="Product ID"
+            id="currentPalletId"
+            name="currentPalletId"
+            placeholder="Current Pallet ID"
             control={control}
-            error={errors.productId}
+            error={errors.currentPalletId}
             required={true}
             rules={{
               required: 'This field is required!',
@@ -63,11 +68,11 @@ const Refill = () => {
         <>
           {step === 1 && <QRscanner />}
           <FormInput
-            id="palletId"
-            name="palletId"
-            placeholder="Pallet ID"
+            id="productId"
+            name="productId"
+            placeholder="Product ID"
             control={control}
-            error={errors.palletId}
+            error={errors.productId}
             required={true}
             rules={{
               required: 'This field is required!',
@@ -100,18 +105,37 @@ const Refill = () => {
         </>
       ),
     },
+    {
+      index: 4,
+      component: (
+        <>
+          {step === 3 && <QRscanner />}
+          <FormInput
+            id="destinationPalletId"
+            name="destinationPalletId"
+            placeholder="Destination Pallet ID"
+            control={control}
+            error={errors.destinationPalletId}
+            required={true}
+            rules={{
+              required: 'This field is required!',
+            }}
+          />
+        </>
+      ),
+    },
   ];
 
-  const refillProduct: SubmitHandler<FieldValues> = (data) => {
-    refillMutation.mutate(
+  const relocateProduct: SubmitHandler<FieldValues> = (data) => {
+    relocateMutation.mutate(
       schemaFiller(
         { ...data, productQuantity: +data.productQuantity },
-        defaultSchema.refill_product
+        defaultSchema.relocate_product
       ),
       {
         onSuccess: () => {
-          toast.success('Stock has been successfully updated!');
-          navigate('/cms/menagment');
+          toast.success('Relocated successfully!');
+          navigate('/cms/menagment/relocate');
         },
         onError: (error: any) => {
           toast.error(error?.response?.data?.msg);
@@ -124,6 +148,9 @@ const Refill = () => {
 
   const handleScannerSuccess = (value: string) => {
     setValue(scannerPages[step], value);
+    if (pages.length - 1 === step) {
+      relocateProduct(getValues());
+    }
     nextPage();
   };
 
@@ -142,17 +169,17 @@ const Refill = () => {
   const buttonType = step === pages.length - 1 ? 'submit' : 'button';
 
   return (
-    <form className={styles.container} onSubmit={handleSubmit(refillProduct)}>
+    <form className={styles.container} onSubmit={handleSubmit(relocateProduct)}>
       <MultiStepForm step={step} pages={pages} />
       <WmsButton
-        disabled={refillMutation.isLoading}
+        disabled={relocateMutation.isLoading}
         onclick={handleButtonClick}
         type={buttonType}
       >
-        {refillMutation.isLoading ? 'Loading' : buttonTitle}
+        {relocateMutation.isLoading ? 'Loading' : buttonTitle}
       </WmsButton>
     </form>
   );
 };
 
-export default Refill;
+export default RelocateProduct;

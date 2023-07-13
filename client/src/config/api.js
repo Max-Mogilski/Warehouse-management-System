@@ -15,6 +15,7 @@ const API = {
   GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,
   GET_CURRENT_USER: 'auth/current-user',
   POST_REFILL_PRODUCT: '/products/refill',
+  POST_RELOCATE_PRODUCT: '/products/relocate',
 };
 
 export default API;
@@ -57,6 +58,12 @@ export const defaultSchema = {
     productId: '',
     productQuantity: 0,
     palletId: '',
+  },
+  relocate_product: {
+    productId: '',
+    productQuantity: 0,
+    currentPalletId: '',
+    destinationPalletId: '',
   },
 };
 

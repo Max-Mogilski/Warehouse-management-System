@@ -20,6 +20,7 @@ const MenuList = ({
 
   return (
     <nav className={styles.container}>
+      {options?.length === 0 && <p>Nothing found</p>}
       {options ? (
         options?.map((button) => (
           <MenuButton
