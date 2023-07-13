@@ -5,6 +5,7 @@ const options: MenuButtonProps[] = [
   { content: 'Create', path: '/cms/menagment/create' },
   { content: 'Inspect', path: '/cms/menagment/inspect', disabled: true },
   { content: 'Relocate', path: '/cms/menagment/relocate', disabled: true },
+  { content: 'Refill', path: '/cms/menagment/refill' },
 ];
 
 const MenagmentMenuPage = () => {

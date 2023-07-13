@@ -29,6 +29,7 @@ import Pallet from './views/wms/menagment-menu-page/create-menu/pallet/Pallet';
 import Product from './views/wms/menagment-menu-page/create-menu/product/Product';
 import ProductDetails from './views/wms/inspection-menu-page/products-list/product-details/ProductDetails';
 import ProductsInspectionList from './views/wms/inspection-menu-page/products-list/ProductsList';
+import Refill from './views/wms/menagment-menu-page/refill/Refill';
 
 function App() {
   const queryClient = new QueryClient({
@@ -168,6 +169,14 @@ function App() {
             element={
               <Protected>
                 <Product />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/menagment/refill"
+            element={
+              <Protected>
+                <Refill />
               </Protected>
             }
           />

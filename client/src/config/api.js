@@ -14,6 +14,7 @@ const API = {
   GET_LOCATION: (id) => `locations/${id}`,
   GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,
   GET_CURRENT_USER: 'auth/current-user',
+  POST_REFILL_PRODUCT: '/products/refill',
 };
 
 export default API;
@@ -51,6 +52,11 @@ export const defaultSchema = {
     price: 0,
     weight: 0,
     url: '',
+  },
+  refill_product: {
+    productId: '',
+    productQuantity: 0,
+    palletId: '',
   },
 };
 
