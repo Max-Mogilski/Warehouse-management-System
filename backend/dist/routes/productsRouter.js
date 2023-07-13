@@ -11,3 +11,4 @@ exports.router = express_1.default.Router();
 exports.router.route("/").get(productsController_1.getAllProducts).post(authentication_1.authenticateUser, productsController_1.createProduct);
 exports.router.route("/:id").get(productsController_1.getSingleProduct);
 exports.router.post("/refill", authentication_1.authenticateUser, productsController_1.refillProduct);
+exports.router.post("/relocate", authentication_1.authenticateUser, productsController_1.relocateProduct);

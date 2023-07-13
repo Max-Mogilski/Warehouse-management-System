@@ -55,6 +55,10 @@ export const refillProduct = async (req: Request, res: Response) => {
 	if (!productId || !productQuantity || !palletId)
 		throw new BadRequestError("Please provide all required values!");
 
+	if (productQuantity < 1) {
+		throw new BadRequestError("Quantity can't be smaller than 1");
+	}
+
 	const product = await prisma.product.findUnique({ where: { id: productId } });
 
 	if (!product)
@@ -94,6 +98,111 @@ export const refillProduct = async (req: Request, res: Response) => {
 			quantityStock: product.quantityStock + productQuantity,
 		},
 	});
+
+	res.status(StatusCodes.OK).json({ msg: "ok" });
+};
+
+export const relocateProduct = async (req: Request, res: Response) => {
+	const { productId, productQuantity, currentPalletId, destinationPalletId } =
+		req.body;
+
+	if (
+		!productId ||
+		!productQuantity ||
+		!currentPalletId ||
+		!destinationPalletId
+	)
+		throw new BadRequestError("Please provide all required values!");
+
+	if (currentPalletId === destinationPalletId) {
+		throw new BadRequestError("Please provide a different destination pallet!");
+	}
+
+	if (productQuantity < 1) {
+		throw new BadRequestError("Quantity can't be smaller than 1");
+	}
+
+	const currentPalletProduct = await prisma.palletProduct.findFirst({
+		where: {
+			productId,
+			palletId: currentPalletId,
+		},
+	});
+
+	if (!currentPalletProduct)
+		throw new BadRequestError(
+			"The provided pallet/product doesn't exist or pallet doesn't contain the provided product"
+		);
+
+	const destinationPalletProduct = await prisma.palletProduct.findFirst({
+		where: {
+			productId,
+			palletId: destinationPalletId,
+		},
+	});
+
+	const destinationPallet = await prisma.pallet.findFirst({
+		where: { id: destinationPalletId },
+	});
+
+	if (!destinationPallet)
+		throw new BadRequestError(
+			`Provided destination pallet with ID: ${destinationPalletId} doesn't exist!`
+		);
+
+	if (currentPalletProduct?.quantity! - +productQuantity < 0) {
+		throw new BadRequestError(
+			`Pallet with ID: ${currentPalletId} doesn't contain enough products!`
+		);
+	}
+
+	if (currentPalletProduct?.quantity! - +productQuantity === 0) {
+		if (destinationPalletProduct) {
+			await prisma.palletProduct.delete({
+				where: {
+					id: currentPalletProduct?.id,
+				},
+			});
+
+			await prisma.palletProduct.update({
+				where: { id: destinationPalletProduct.id },
+				data: { quantity: destinationPalletProduct.quantity + productQuantity },
+			});
+		} else {
+			await prisma.palletProduct.update({
+				where: {
+					id: currentPalletProduct?.id,
+				},
+				data: {
+					palletId: destinationPalletId,
+				},
+			});
+		}
+	} else {
+		await prisma.palletProduct.update({
+			where: { id: currentPalletProduct?.id },
+			data: {
+				quantity: currentPalletProduct?.quantity! - productQuantity,
+			},
+		});
+
+		if (destinationPalletProduct) {
+			await prisma.palletProduct.update({
+				where: { id: destinationPalletProduct?.id },
+				data: {
+					quantity: destinationPalletProduct?.quantity! + productQuantity,
+				},
+			});
+		} else {
+			await prisma.palletProduct.create({
+				data: {
+					productId,
+					quantity: productQuantity,
+					palletId: destinationPalletId,
+				},
+			});
+		}
+	}
 
 	res.status(StatusCodes.OK).json({ msg: "ok" });
 };
