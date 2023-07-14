@@ -13,6 +13,7 @@ const API = {
   GET_ORDER: (id) => `orders/${id}`,
   GET_LOCATION: (id) => `locations/${id}`,
   GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,
+  GET_PALLET_PRODUCTS: (id) => `pallets/${id}/products`,
   GET_CURRENT_USER: 'auth/current-user',
   POST_REFILL_PRODUCT: '/products/refill',
   POST_RELOCATE_PRODUCT: '/products/relocate',

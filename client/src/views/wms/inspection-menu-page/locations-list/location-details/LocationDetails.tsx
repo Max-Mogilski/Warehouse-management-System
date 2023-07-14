@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { Detail } from '@/components/wms/details-list/types';
 import { useLocationQuery } from './query';
 import QRcodeCard from '@/components/wms/qr-code/QRCode';
+import ShowItemsButton from '@/components/wms/show-item-button/ShowItemsButton';
+import PalletProductsList from '@/components/wms/pallet-products-list/PalletProductsList';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -15,7 +17,10 @@ const OrderDetails = () => {
     if (data) {
       setItems([
         { key: 'Location ID', value: id! },
-        { key: 'Filled', value: data?.palletId ? 'Yes' : 'No' },
+        {
+          key: 'Pallet ID',
+          value: data?.palletId ? data?.palletId : 'Location is empty',
+        },
       ]);
     }
   }, [data]);
@@ -28,6 +33,13 @@ const OrderDetails = () => {
           <QRcodeCard title="Location QR" value={id!} />
           {data?.palletId && (
             <QRcodeCard title="Pallet QR" value={data?.palletId} />
+          )}
+          {data?.palletId && (
+            <ShowItemsButton
+              listNode={<PalletProductsList palletId={data?.palletId} />}
+            >
+              Products
+            </ShowItemsButton>
           )}
         </div>
       </div>
