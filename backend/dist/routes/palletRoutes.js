@@ -8,3 +8,4 @@ const express_1 = __importDefault(require("express"));
 const palletController_1 = require("../controllers/palletController");
 exports.router = express_1.default.Router();
 exports.router.route("/").post(palletController_1.createPallet);
+exports.router.get("/:id/products", palletController_1.getPalletProducts);

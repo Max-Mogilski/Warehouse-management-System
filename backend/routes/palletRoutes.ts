@@ -1,6 +1,10 @@
 import express from "express";
-import { createPallet } from "../controllers/palletController";
+import {
+	createPallet,
+	getPalletProducts,
+} from "../controllers/palletController";
 
 export const router = express.Router();
 
 router.route("/").post(createPallet);
+router.get("/:id/products", getPalletProducts);

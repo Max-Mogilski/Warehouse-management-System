@@ -45,3 +45,28 @@ export const createPallet = async (req: Request, res: Response) => {
 
 	res.status(StatusCodes.CREATED).json({ data: pallet });
 };
+
+export const getPalletProducts = async (req: Request, res: Response) => {
+	const { id } = req.params;
+
+	if (!id) {
+		throw new BadRequestError("Please provide pallet id!");
+	}
+
+	const products = await prisma.palletProduct.findMany({
+		where: {
+			palletId: id,
+		},
+		select: {
+			quantity: true,
+			product: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
+		},
+	});
+
+	res.status(StatusCodes.CREATED).json({ data: products });
+};

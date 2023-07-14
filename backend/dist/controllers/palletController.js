@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPallet = void 0;
+exports.getPalletProducts = exports.createPallet = void 0;
 const prisma_1 = require("../prisma/prisma");
 const http_status_codes_1 = require("http-status-codes");
 const custom_api_1 = __importDefault(require("../errors/custom-api"));
@@ -49,3 +49,25 @@ const createPallet = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.status(http_status_codes_1.StatusCodes.CREATED).json({ data: pallet });
 });
 exports.createPallet = createPallet;
+const getPalletProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    if (!id) {
+        throw new bad_request_1.default("Please provide pallet id!");
+    }
+    const products = yield prisma_1.prisma.palletProduct.findMany({
+        where: {
+            palletId: id,
+        },
+        select: {
+            quantity: true,
+            product: {
+                select: {
+                    id: true,
+                    name: true,
+                },
+            },
+        },
+    });
+    res.status(http_status_codes_1.StatusCodes.CREATED).json({ data: products });
+});
+exports.getPalletProducts = getPalletProducts;
