@@ -35,6 +35,8 @@ import RelocateProduct from './views/wms/menagment-menu-page/relocate-menu/produ
 import InspectMenu from './views/wms/menagment-menu-page/inspect-menu/InspectMenu';
 import InspectProduct from './views/wms/menagment-menu-page/inspect-menu/product/InspectProduct';
 import InspectLocation from './views/wms/menagment-menu-page/inspect-menu/location/InspectLocation';
+import InspectPallet from './views/wms/menagment-menu-page/inspect-menu/pallet/InspectPallet';
+import PalletDetails from './views/wms/inspection-menu-page/pallets-list/pallet-details/PalletDetails';
 
 function App() {
   const queryClient = new QueryClient({
@@ -146,6 +148,14 @@ function App() {
             }
           />
           <Route
+            path="/cms/inspection/pallets/:id"
+            element={
+              <Protected>
+                <PalletDetails />
+              </Protected>
+            }
+          />
+          <Route
             path="/cms/menagment"
             element={
               <Protected>
@@ -222,6 +232,14 @@ function App() {
             element={
               <Protected>
                 <InspectLocation />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/menagment/inspect/pallet"
+            element={
+              <Protected>
+                <InspectPallet />
               </Protected>
             }
           />
