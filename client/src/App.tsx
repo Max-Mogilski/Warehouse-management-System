@@ -37,6 +37,7 @@ import InspectProduct from './views/wms/menagment-menu-page/inspect-menu/product
 import InspectLocation from './views/wms/menagment-menu-page/inspect-menu/location/InspectLocation';
 import InspectPallet from './views/wms/menagment-menu-page/inspect-menu/pallet/InspectPallet';
 import PalletDetails from './views/wms/inspection-menu-page/pallets-list/pallet-details/PalletDetails';
+import OrderPicking from './views/wms/pick-menu-page/order-picking/OrderPicking';
 
 function App() {
   const queryClient = new QueryClient({
@@ -248,6 +249,14 @@ function App() {
             element={
               <Protected>
                 <PickMenuPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/cms/pick/order-picking"
+            element={
+              <Protected>
+                <OrderPicking />
               </Protected>
             }
           />

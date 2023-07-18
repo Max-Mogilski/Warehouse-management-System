@@ -7,11 +7,13 @@ import Loader from '@/components/shared/loader/Loader';
 const ShowItemsButton = ({
   children,
   listNode,
+  initOpen = false,
 }: {
   children: ReactNode;
   listNode: ReactNode;
+  initOpen: boolean;
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(initOpen);
   return (
     <div className={styles.container}>
       <button

@@ -4,7 +4,15 @@ import styles from './QRcode.module.scss';
 import { Link } from 'react-router-dom';
 import ShowItemsButton from '../show-item-button/ShowItemsButton';
 
-const QRcodeCard = ({ value, title }: { value: string; title: string }) => {
+const QRcodeCard = ({
+  value,
+  title,
+  initOpen,
+}: {
+  value: string;
+  title: string;
+  initOpen: boolean;
+}) => {
   const [qrcode, setQrcode] = useState('');
 
   useEffect(() => {
@@ -26,7 +34,7 @@ const QRcodeCard = ({ value, title }: { value: string; title: string }) => {
     </div>
   );
 
-  return <ShowItemsButton listNode={qrCodeContainer}>{title}</ShowItemsButton>;
+  return <ShowItemsButton listNode={qrCodeContainer} initOpen={initOpen}>{title}</ShowItemsButton>;
 };
 
 export default QRcodeCard;

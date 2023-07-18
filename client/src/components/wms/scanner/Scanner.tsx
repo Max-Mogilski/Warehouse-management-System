@@ -2,6 +2,7 @@ import { Html5Qrcode } from 'html5-qrcode';
 import { useEffect, useState } from 'react';
 import styles from './Scanner.module.scss';
 import { useScanner } from '@/stores/scannerStore';
+import { toast } from 'react-hot-toast';
 
 const QRscanner = () => {
   const [camera, setCamera] = useState<any>(null);
@@ -16,6 +17,7 @@ const QRscanner = () => {
         }
       })
       .catch((err) => {
+        toast.error('Please connect camera');
         console.log(err);
       });
   };
