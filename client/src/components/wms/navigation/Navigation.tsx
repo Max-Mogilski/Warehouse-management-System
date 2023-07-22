@@ -46,7 +46,7 @@ const Navigation = () => {
               </Link>
             </motion.li>
             <motion.li whileTap={{ scale: 0.9 }}>
-              <Link onClick={() => setShow(false)} to="/cms/pick/start">
+              <Link onClick={() => setShow(false)} to="/cms/pick/order-picking">
                 Order Pick
               </Link>
             </motion.li>
