@@ -4,7 +4,12 @@ import { StatusCodes } from "http-status-codes";
 import BadRequestError from "../errors/bad-request";
 
 export const createLocation = async (req: Request, res: Response) => {
-	const location = await prisma.location.create({ data: {} });
+	const locationsCount = await prisma.location.count();
+	const location = await prisma.location.create({
+		data: {
+			locationNo: locationsCount + 1,
+		},
+	});
 	res.status(StatusCodes.CREATED).json({ data: location });
 };
 

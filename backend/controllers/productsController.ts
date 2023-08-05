@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
 import BadRequestError from "../errors/bad-request";
 import { PrismaClient } from "@prisma/client";
+import { getUpdatedLocation } from "../utils/product/getUpdatedLocation";
 export const prisma = new PrismaClient();
 
 export const getAllProducts = async (req: Request, res: Response) => {
@@ -69,7 +70,7 @@ export const refillProduct = async (req: Request, res: Response) => {
 	if (!pallet)
 		throw new BadRequestError(`Pallet with id ${palletId} doesn't exists!`);
 
-	const palletProduct = await prisma.palletProduct.findFirst({
+	let palletProduct = await prisma.palletProduct.findFirst({
 		where: {
 			productId,
 			palletId,
@@ -82,7 +83,7 @@ export const refillProduct = async (req: Request, res: Response) => {
 			data: { quantity: palletProduct.quantity + productQuantity },
 		});
 	} else {
-		await prisma.palletProduct.create({
+		palletProduct = await prisma.palletProduct.create({
 			data: {
 				palletId: pallet.id,
 				productId: product.id,
@@ -91,11 +92,23 @@ export const refillProduct = async (req: Request, res: Response) => {
 		});
 	}
 
+	const location = await prisma.location.findFirst({
+		where: {
+			palletId: palletProduct.palletId,
+		},
+	});
+
+	const updatedLocations = getUpdatedLocation(
+		product.locations ? product.locations : "",
+		`${location?.locationNo}`
+	);
+
 	await prisma.product.update({
 		where: { id: productId },
 		data: {
 			quantity: product.quantity + productQuantity,
 			quantityStock: product.quantityStock + productQuantity,
+			locations: updatedLocations,
 		},
 	});
 

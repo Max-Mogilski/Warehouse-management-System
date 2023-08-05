@@ -3,90 +3,101 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Product {
-  id             String         @id @default(uuid())
+  id             String          @id @default(uuid())
   name           String
   price          Float
   url            String
-  quantity       Int?           @default(0)
-  quantityStock  Int?           @default(0)
-  weight Float? @default(0)
-  orderProducts  OrderProduct[] @relation("ProductToOrderProduct")
+  quantity       Int?            @default(0)
+  quantityStock  Int?            @default(0)
+  weight         Float?          @default(0)
+  locations      String?
+  orderProducts  OrderProduct[]  @relation("ProductToOrderProduct")
   palletProducts PalletProduct[]
 }
 
 model User {
-  id        String  @id @default(uuid())
-  firstName String
-  lastName  String
-  email     String
-  password  String
-  token     Token?  @relation
+  id         String   @id @default(uuid())
+  firstName  String
+  lastName   String
+  email      String
+  password   String
+  token      Token?   @relation
+  totalPicks Int      @default(0)
+  todayPicks Int      @default(0)
+  createdAt  DateTime @default(now())
+  Order      Order[]
 }
 
 model Token {
-  id            String  @id @default(uuid())
+  id           String  @id @default(uuid())
   refreshToken String  @unique
-  ip            String
-  userAgent     String
-  isValid       Boolean
-  user          User?   @relation(fields: [userId], references: [id])
-  userId        String? @unique
+  ip           String
+  userAgent    String
+  isValid      Boolean
+  user         User?   @relation(fields: [userId], references: [id])
+  userId       String? @unique
 }
 
 model Order {
-  id              String          @id @default(uuid())
-  orderProducts   OrderProduct[]  @relation("OrderToOrderProduct")
-  status          OrderStatus
-  address         String
-  customer        String
-  customerEmail   String
-  totalPrice      Float
-  paid            Boolean         @default(true)
+  id            String         @id @default(uuid())
+  orderProducts OrderProduct[] @relation("OrderToOrderProduct")
+  status        OrderStatus
+  pickedBy      User?          @relation(fields: [userId], references: [id])
+  address       String
+  customer      String
+  customerEmail String
+  totalPrice    Float
+  paid          Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  userId        String?
 }
 
 model OrderProduct {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   quantity  Int
-  product   Product  @relation("ProductToOrderProduct", fields: [productId], references: [id])
+  product   Product @relation("ProductToOrderProduct", fields: [productId], references: [id])
   productId String
-  order     Order    @relation("OrderToOrderProduct", fields: [orderId], references: [id])
+  order     Order   @relation("OrderToOrderProduct", fields: [orderId], references: [id])
   orderId   String
+  picked Boolean? @default(false)
 }
 
 model Location {
-  id        String   @id @default(uuid())
-  pallet    Pallet?  @relation(fields: [palletId], references: [id])
-  palletId  String?  @unique
+  id         String  @id @default(uuid())
+  locationNo Int @unique
+  pallet     Pallet? @relation(fields: [palletId], references: [id])
+  palletId   String? @unique
 }
 
-
 model Pallet {
-  id             String           @id @default(uuid())
+  id             String          @id @default(uuid())
   location       Location?
   locationId     String?
   palletProducts PalletProduct[]
 }
 
 model PalletProduct {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   quantity  Int
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId String
-  pallet    Pallet   @relation(fields: [palletId], references: [id])
+  pallet    Pallet  @relation(fields: [palletId], references: [id])
   palletId  String
 
   @@unique([productId, palletId])
 }
 
-enum OrderStatus{
-  CREATED
+enum OrderStatus {
   PROCESSING
+  CREATED
+  PICKING
+  PICKED
   COMPLETED
   CANCELLED
 }

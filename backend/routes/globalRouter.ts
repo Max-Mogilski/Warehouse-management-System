@@ -10,6 +10,7 @@ import { router as authRouter } from "./authRoutes";
 import { router as orderRouter } from "./orderRoutes";
 import { router as locationRouter } from "./locationRoutes";
 import { router as palletRouter } from "./palletRoutes";
+import { router as orderPickingRouter } from "./pickingRoutes";
 import { authenticateUser } from "../middleware/authentication";
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router.use("/auth", authRouter);
 router.use("/orders", orderRouter);
 router.use("/locations", authenticateUser, locationRouter);
 router.use("/pallets", authenticateUser, palletRouter);
+router.use("/order-picking", authenticateUser, orderPickingRouter);
 
 router.use(notFoundMiddleware);
 router.use(errorHandlerMiddleware);

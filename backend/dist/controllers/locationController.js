@@ -17,7 +17,12 @@ const prisma_1 = require("../prisma/prisma");
 const http_status_codes_1 = require("http-status-codes");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const createLocation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const location = yield prisma_1.prisma.location.create({ data: {} });
+    const locationsCount = yield prisma_1.prisma.location.count();
+    const location = yield prisma_1.prisma.location.create({
+        data: {
+            locationNo: locationsCount + 1,
+        },
+    });
     res.status(http_status_codes_1.StatusCodes.CREATED).json({ data: location });
 });
 exports.createLocation = createLocation;

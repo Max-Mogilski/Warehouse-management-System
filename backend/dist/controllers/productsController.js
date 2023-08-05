@@ -16,6 +16,7 @@ exports.relocateProduct = exports.refillProduct = exports.createProduct = export
 const http_status_codes_1 = require("http-status-codes");
 const bad_request_1 = __importDefault(require("../errors/bad-request"));
 const client_1 = require("@prisma/client");
+const getUpdatedLocation_1 = require("../utils/product/getUpdatedLocation");
 exports.prisma = new client_1.PrismaClient();
 const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield exports.prisma.product.findMany({
@@ -71,7 +72,7 @@ const refillProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const pallet = yield exports.prisma.pallet.findUnique({ where: { id: palletId } });
     if (!pallet)
         throw new bad_request_1.default(`Pallet with id ${palletId} doesn't exists!`);
-    const palletProduct = yield exports.prisma.palletProduct.findFirst({
+    let palletProduct = yield exports.prisma.palletProduct.findFirst({
         where: {
             productId,
             palletId,
@@ -84,7 +85,7 @@ const refillProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     else {
-        yield exports.prisma.palletProduct.create({
+        palletProduct = yield exports.prisma.palletProduct.create({
             data: {
                 palletId: pallet.id,
                 productId: product.id,
@@ -92,11 +93,18 @@ const refillProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             },
         });
     }
+    const location = yield exports.prisma.location.findFirst({
+        where: {
+            palletId: palletProduct.palletId,
+        },
+    });
+    const updatedLocations = (0, getUpdatedLocation_1.getUpdatedLocation)(product.locations ? product.locations : "", `${location === null || location === void 0 ? void 0 : location.locationNo}`);
     yield exports.prisma.product.update({
         where: { id: productId },
         data: {
             quantity: product.quantity + productQuantity,
             quantityStock: product.quantityStock + productQuantity,
+            locations: updatedLocations,
         },
     });
     res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "ok" });
