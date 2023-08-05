@@ -15,6 +15,10 @@ const API = {
   GET_ORDER_PRODUCTS: (id) => `orders/${id}/products`,
   GET_PALLET_PRODUCTS: (id) => `pallets/${id}/products`,
   GET_CURRENT_USER: 'auth/current-user',
+  GET_PRODUCT_TO_PICK: 'order-picking/pick',
+  GET_TASK_STATUS: 'order-picking/check-status',
+  POST_ASSIGN_TASK: 'order-picking/start',
+  POST_PICK_ITEM: 'order-picking/pick',
   POST_REFILL_PRODUCT: '/products/refill',
   POST_RELOCATE_PRODUCT: '/products/relocate',
 };
@@ -65,6 +69,10 @@ export const defaultSchema = {
     productQuantity: 0,
     currentPalletId: '',
     destinationPalletId: '',
+  },
+  productToPick: {
+    productId: '',
+    quantity: 0,
   },
 };
 

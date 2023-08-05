@@ -27,12 +27,14 @@ export const startOrderPicking = async (req: Request, res: Response) => {
 	});
 
 	if (!order) {
-		throw new BadRequestError(`There are no orders to assign!`);
+		res
+			.status(StatusCodes.OK)
+			.json({ data: null, msg: "There are no orders to assign!" });
 	}
 
 	await prisma.order.update({
 		where: {
-			id: order.id,
+			id: order?.id,
 		},
 		data: {
 			userId: user.userId,
@@ -227,10 +229,8 @@ export const pickProduct = async (req: Request, res: Response) => {
 	const currentOrderData = await prisma.order.findFirst({
 		where: { status: "PICKING", userId: user.userId },
 		select: {
-			id: true,
 			orderProducts: {
 				where: {
-					productId,
 					picked: false,
 				},
 			},
@@ -238,15 +238,13 @@ export const pickProduct = async (req: Request, res: Response) => {
 	});
 
 	if (!currentOrderData?.orderProducts[0]) {
-		await prisma.order.update({
-			where: {
-				id: currentOrderData?.id,
-			},
+		await prisma.order.updateMany({
+			where: { status: "PICKING", userId: user.userId },
 			data: {
 				status: "PICKED",
 			},
 		});
-		res.status(StatusCodes.OK).json({ data: "completed" });
+		res.status(StatusCodes.OK).json({ data: null, msg: "completed" });
 	}
 
 	res.status(StatusCodes.OK).json({ data: null });

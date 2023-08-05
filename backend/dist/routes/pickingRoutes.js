@@ -8,5 +8,5 @@ const express_1 = __importDefault(require("express"));
 const pickingControllet_1 = require("../controllers/pickingControllet");
 exports.router = express_1.default.Router();
 exports.router.post("/start", pickingControllet_1.startOrderPicking);
-exports.router.post("/check-status", pickingControllet_1.checkPickingStatus);
+exports.router.get("/check-status", pickingControllet_1.checkPickingStatus);
 exports.router.route("/pick").get(pickingControllet_1.getProductToPick).post(pickingControllet_1.pickProduct);

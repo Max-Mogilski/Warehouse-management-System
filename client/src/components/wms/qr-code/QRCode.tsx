@@ -7,11 +7,11 @@ import ShowItemsButton from '../show-item-button/ShowItemsButton';
 const QRcodeCard = ({
   value,
   title,
-  initOpen,
+  initOpen = false,
 }: {
   value: string;
   title: string;
-  initOpen: boolean;
+  initOpen?: boolean;
 }) => {
   const [qrcode, setQrcode] = useState('');
 
@@ -34,7 +34,11 @@ const QRcodeCard = ({
     </div>
   );
 
-  return <ShowItemsButton listNode={qrCodeContainer} initOpen={initOpen}>{title}</ShowItemsButton>;
+  return (
+    <ShowItemsButton listNode={qrCodeContainer} initOpen={initOpen}>
+      {title}
+    </ShowItemsButton>
+  );
 };
 
 export default QRcodeCard;

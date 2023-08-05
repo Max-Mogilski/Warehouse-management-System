@@ -1,18 +1,47 @@
 import WmsButton from '@/components/wms/wms-button/WmsButton';
 import styles from './OrderPicking.module.scss';
-import { useState } from 'react';
-import GenerateLocation from './generate-location/GenerateLocation';
+import { useEffect, useState } from 'react';
 import PickItem from './pick-item/PickItem';
-
-const options = [
-  { step: 1, component: <GenerateLocation /> },
-  { step: 2, component: <PickItem /> },
-];
+import { useAssignTaskMutation, useTaskStatusQuery } from './query';
+import Loader from '@/components/shared/loader/Loader';
+import { toast } from 'react-hot-toast';
+import OrderPicked from './order-picked/OrderPicked';
 
 const OrderPicking = () => {
+  const { data: statusData, isLoading } = useTaskStatusQuery();
   const [step, setStep] = useState(0);
+  const assignMutation = useAssignTaskMutation();
+
+  const options = [
+    { step: 1, component: <PickItem setStep={setStep} /> },
+    { step: 2, component: <OrderPicked setStep={setStep} /> },
+  ];
 
   const nextStep = () => setStep((prev) => prev + 1);
+
+  const handleTaskAction = () => {
+    assignMutation.mutate(undefined, {
+      onSuccess: (data) => {
+        if (!data.data) {
+          toast.error(data.msg);
+        } else {
+          nextStep();
+        }
+      },
+    });
+  };
+
+  if (isLoading) {
+    <div className={styles.loader}>
+      <Loader />
+    </div>;
+  }
+
+  useEffect(() => {
+    if (statusData) {
+      setStep(1);
+    }
+  }, [statusData]);
 
   return (
     <div className={styles.container}>
@@ -20,7 +49,11 @@ const OrderPicking = () => {
         {options.map((option) =>
           option.step === step ? option.component : null
         )}
-        {step <= 1 && <WmsButton onclick={nextStep}>Start</WmsButton>}
+        {step === 0 && (
+          <WmsButton disabled={isLoading} onclick={handleTaskAction}>
+            {isLoading ? 'Loading' : 'Start'}
+          </WmsButton>
+        )}
       </div>
     </div>
   );

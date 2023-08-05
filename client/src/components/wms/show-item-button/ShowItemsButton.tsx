@@ -2,7 +2,6 @@ import { ReactNode, useState } from 'react';
 import styles from './ShowItemsButton.module.scss';
 import ArrowUpIcon from '@/assets/icons/upper-arrow.svg';
 import ArrowDownIcon from '@/assets/icons/arrow.svg';
-import Loader from '@/components/shared/loader/Loader';
 
 const ShowItemsButton = ({
   children,
@@ -11,7 +10,7 @@ const ShowItemsButton = ({
 }: {
   children: ReactNode;
   listNode: ReactNode;
-  initOpen: boolean;
+  initOpen?: boolean;
 }) => {
   const [isClicked, setIsClicked] = useState(initOpen);
   return (

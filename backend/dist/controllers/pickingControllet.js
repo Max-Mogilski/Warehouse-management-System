@@ -36,11 +36,13 @@ const startOrderPicking = (req, res) => __awaiter(void 0, void 0, void 0, functi
         },
     });
     if (!order) {
-        throw new bad_request_1.default(`There are no orders to assign!`);
+        res
+            .status(http_status_codes_1.StatusCodes.OK)
+            .json({ data: null, msg: "There are no orders to assign!" });
     }
     yield prisma_1.prisma.order.update({
         where: {
-            id: order.id,
+            id: order === null || order === void 0 ? void 0 : order.id,
         },
         data: {
             userId: user.userId,
@@ -213,25 +215,21 @@ const pickProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const currentOrderData = yield prisma_1.prisma.order.findFirst({
         where: { status: "PICKING", userId: user.userId },
         select: {
-            id: true,
             orderProducts: {
                 where: {
-                    productId,
                     picked: false,
                 },
             },
         },
     });
     if (!(currentOrderData === null || currentOrderData === void 0 ? void 0 : currentOrderData.orderProducts[0])) {
-        yield prisma_1.prisma.order.update({
-            where: {
-                id: currentOrderData === null || currentOrderData === void 0 ? void 0 : currentOrderData.id,
-            },
+        yield prisma_1.prisma.order.updateMany({
+            where: { status: "PICKING", userId: user.userId },
             data: {
                 status: "PICKED",
             },
         });
-        res.status(http_status_codes_1.StatusCodes.OK).json({ data: "completed" });
+        res.status(http_status_codes_1.StatusCodes.OK).json({ data: null, msg: "completed" });
     }
     res.status(http_status_codes_1.StatusCodes.OK).json({ data: null });
 });
