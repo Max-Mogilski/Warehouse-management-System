@@ -11,10 +11,14 @@ const OrderPicking = () => {
   const { data: statusData, isLoading } = useTaskStatusQuery();
   const [step, setStep] = useState(0);
   const assignMutation = useAssignTaskMutation();
+  const [currentTaskId, setCurrentTaskId] = useState('');
 
   const options = [
     { step: 1, component: <PickItem setStep={setStep} /> },
-    { step: 2, component: <OrderPicked setStep={setStep} /> },
+    {
+      step: 2,
+      component: <OrderPicked taskId={currentTaskId} setStep={setStep} />,
+    },
   ];
 
   const nextStep = () => setStep((prev) => prev + 1);
@@ -25,6 +29,7 @@ const OrderPicking = () => {
         if (!data.data) {
           toast.error(data.msg);
         } else {
+          setCurrentTaskId(data?.data?.id);
           nextStep();
         }
       },
