@@ -27,7 +27,9 @@ axios.interceptors.response.use(
         });
       }
     } else {
-      toast.error('Błąd podczas przetwarzania danych', { id: 'serverError' });
+      toast.error('Failed to fetch data', {
+        id: 'serverError',
+      });
     }
     return Promise.reject(error);
   }
