@@ -2,7 +2,13 @@ import WmsButton from '@/components/wms/wms-button/WmsButton';
 import styles from './OrderPicked.module.scss';
 import QRcodeCard from '@/components/wms/qr-code/QRCode';
 
-const OrderPicked = ({ setStep, taskId }: any) => {
+const OrderPicked = ({
+  setStep,
+  taskId,
+}: {
+  setStep: (step: number) => void;
+  taskId: string;
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
