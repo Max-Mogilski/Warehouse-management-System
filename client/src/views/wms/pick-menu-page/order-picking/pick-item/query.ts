@@ -29,7 +29,8 @@ export const usePickItemMutation = () => {
 
   return useMutation({
     mutationFn: (data: ItemToPick) => pickItem(data),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data?.msg === 'completed') return;
       queryClient.invalidateQueries({ queryKey: queryKeys.itemToPick });
     },
   });

@@ -1,7 +1,6 @@
 import WmsButton from '@/components/wms/wms-button/WmsButton';
 import styles from './OrderPicked.module.scss';
 import QRcodeCard from '@/components/wms/qr-code/QRCode';
-import { useNavigate } from 'react-router-dom';
 
 const OrderPicked = ({ setStep }: any) => {
   return (
