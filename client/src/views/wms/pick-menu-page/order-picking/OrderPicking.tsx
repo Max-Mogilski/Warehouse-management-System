@@ -55,8 +55,11 @@ const OrderPicking = () => {
           option.step === step ? option.component : null
         )}
         {step === 0 && (
-          <WmsButton disabled={isLoading} onclick={handleTaskAction}>
-            {isLoading ? 'Loading' : 'Start'}
+          <WmsButton
+            disabled={isLoading || assignMutation.isLoading}
+            onclick={handleTaskAction}
+          >
+            {isLoading || assignMutation.isLoading ? 'Loading' : 'Start'}
           </WmsButton>
         )}
       </div>
