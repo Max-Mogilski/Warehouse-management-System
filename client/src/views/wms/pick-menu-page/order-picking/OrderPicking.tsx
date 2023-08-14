@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import OrderPicked from './order-picked/OrderPicked';
 
 const OrderPicking = () => {
-  const { data: statusData, isLoading } = useTaskStatusQuery();
+  const { data: statusData, isLoading, refetch } = useTaskStatusQuery();
   const [step, setStep] = useState(0);
   const assignMutation = useAssignTaskMutation();
   const [currentTaskId, setCurrentTaskId] = useState('');
@@ -43,8 +43,13 @@ const OrderPicking = () => {
   }
 
   useEffect(() => {
+    refetch();
+  }, []);
+
+  useEffect(() => {
     if (statusData) {
       setStep(1);
+      setCurrentTaskId(statusData.id);
     }
   }, [statusData]);
 
