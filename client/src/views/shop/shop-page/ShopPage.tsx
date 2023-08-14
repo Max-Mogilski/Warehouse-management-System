@@ -12,6 +12,11 @@ const ShopPage = () => {
   return (
     <ShopLayout>
       <h2>What do you buy today?</h2>
+      {data?.length === 0 && (
+        <div className={styles['loader-container']}>
+          <p>No products found!</p>
+        </div>
+      )}
       {isLoading ? (
         <div className={styles['loader-container']}>
           <Loader />
