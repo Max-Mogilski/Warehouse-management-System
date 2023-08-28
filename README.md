@@ -11,8 +11,8 @@ To fully use the application you need to allow your camera due to the scanning f
   fronted: 
    <br /> - react, typescript, scss, zustand, react-query, framermotion and other libraries <br />
   backend:
-   <br /> - express, typescript, prisma, mysql <br />
-  deploy:
+   <br /> - express, typescript, prisma, mysql
+ <br /> deploy:
     - docker, linux, vps
 
 ### Shop prototype features
