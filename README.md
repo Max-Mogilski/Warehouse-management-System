@@ -9,9 +9,9 @@ To fully use the application you need to allow your camera due to the scanning f
 
 ## Technologies used:
   fronted: 
-    - react, typescript, scss, zustand, react-query, framermotion and other libraries <br />
+   <br /> - react, typescript, scss, zustand, react-query, framermotion and other libraries <br />
   backend:
-    - express, typescript, prisma, mysql
+   <br /> - express, typescript, prisma, mysql <br />
   deploy:
     - docker, linux, vps
 
