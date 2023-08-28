@@ -9,11 +9,11 @@ To fully use the application you need to allow your camera due to the scanning f
 
 ## Technologies used:
   fronted:
-  - react, typescript, scss, zustand, react-query, framermotion and other libraries <br />
+    - react, typescript, scss, zustand, react-query, framermotion and other libraries <br />
   backend:
-  - express, typescript, prisma, mysql
+    - express, typescript, prisma, mysql
  <br /> deploy:
-  - docker, linux, vps
+    - docker, linux, vps
 
 ### Shop prototype features
   - add/remove products from the cart
