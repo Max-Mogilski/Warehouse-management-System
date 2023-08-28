@@ -13,7 +13,7 @@ To fully use the application you need to allow your camera due to the scanning f
   backend:
    <br /> - express, typescript, prisma, mysql
  <br /> deploy:
-    - docker, linux, vps
+   <br /> - docker, linux, vps
 
 ### Shop prototype features
   - add/remove products from the cart
