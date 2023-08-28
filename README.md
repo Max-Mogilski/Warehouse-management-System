@@ -8,9 +8,11 @@ TEST PASSWORD: Test123%
 To fully use the application you need to allow your camera due to the scanning functionality.
 
 ## Technologies used:
- ## fronted: react, typescript, scss, zustand, react-query, framermotion and other libraries
- ## backend: express, typescript, prisma, mysql
- ## deploy: docker, linux, vps
+ ### Fronted: react, typescript, scss, zustand, react-query, framermotion and other libraries
+ </br>
+ ### Backend: express, typescript, prisma, mysql
+ </br>
+ ### Deploy: docker, linux, vps
 
 ### Shop prototype features
   - add/remove products from the cart
