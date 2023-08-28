@@ -14,11 +14,12 @@ To fully use the application you need to allow your camera due to the scanning f
  
  #### Deploy: docker, linux, vps
 
-### Shop prototype features
+## Features
+### Shop prototype
   - add/remove products from the cart
   - create an order
 
-### WMS features
+### WMS
   - register/login
   - create product and add it to the shop
   - create location
