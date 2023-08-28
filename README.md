@@ -1,5 +1,12 @@
 # Warehouse-Management-System
 
+LIVE: https://www.warehousesystem.ovh/
+
+TEST USER: test@test.com
+TEST PASSWORD: Test123%
+
+To fully use the application you need to allow your camera due to the scanning functionality.
+
 ### Shop prototype features
   - add/remove products from the cart
   - create an order
