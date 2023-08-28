@@ -2,8 +2,7 @@
 
 LIVE: https://www.warehousesystem.ovh/
 
-TEST USER: test@test.com
-
+TEST USER: test@test.com <br />
 TEST PASSWORD: Test123%
 
 To fully use the application you need to allow your camera due to the scanning functionality.
