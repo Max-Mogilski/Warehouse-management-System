@@ -65,7 +65,6 @@ To fully use the application you need to allow your camera due to the scanning f
   ![Inspect full location](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/inspect-full-location.png?raw=true)
   <br><br>
  ### Creating an order
-  <br><br>
   Now we are able to add items to the cart and place an order.
   <br><br>
   ![Add to the cart](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-cart.png?raw=true)
@@ -74,6 +73,18 @@ To fully use the application you need to allow your camera due to the scanning f
   ![Payment](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/payment.png?raw=true)
   ![Payment Success](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/success-payment.png?raw=true)
  ### Order picking (picking an order)
+ To start order picking we need to go to CMS -> PICK -> ORDER-PICKING or open menu and select order picking and then select start.
+ If you already had an assigned order you will get it automatically without clicking start.
+ If there are no order to pick you will get a notification.
+   <br><br>
+ ![Start order picking](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/start-order-picking.png?raw=true)
+   <br><br>
+ Once order picking starts you will get the first location with a product that should be picked up.
+ To move forward you should scan the product barcode, take products to your cart/box, provide quantity and click next to move to the next location.
+ The whole process goes from the lowest location number to the highest. So it is not possible to get location 10 and then location 1.
+ As soon as you click the "next" button, you should be transferred to the next page. If there are no more items to pick, it means the order is finished and you will see the shipment label that you should print and put on a box/cart with picked items. Afterwards, you should leave the picked items in the pickup zone where they will be picked up.
+   <br><br>
+    ![Start order picking](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/order-picking%20finish.png?raw=true)
   
   
 ## Features
