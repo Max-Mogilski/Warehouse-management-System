@@ -72,7 +72,7 @@ To fully use the application you need to allow your camera due to the scanning f
   ![Order creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/order-creation.png?raw=true)
   ![Payment](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/payment.png?raw=true)
   ![Payment Success](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/success-payment.png?raw=true)
- ### Order picking (picking an order)
+ ### Order picking
  To start order picking we need to go to CMS -> PICK -> ORDER-PICKING or open menu and select order picking and then select start.
  If you already had an assigned order you will get it automatically without clicking start.
  If there are no order to pick you will get a notification.
