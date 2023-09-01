@@ -82,7 +82,7 @@ To fully use the application you need to allow your camera due to the scanning f
  Once order picking starts you will get the first location with a product that should be picked up.
  To move forward you should scan the product barcode, take products to your cart/box, provide quantity and click next to move to the next location.
  The whole process goes from the lowest location number to the highest. So it is not possible to get location 10 and then location 1.
- <br>
+ <br><br>
  As soon as you click the "next" button, you should be transferred to the next page. If there are no more items to pick, it means the order is finished and you will see the shipment label that you should print and put on a box/cart with picked items. Afterwards, you should leave the picked items in the pickup zone where they will be picked up.
    <br><br>
     ![Start order picking](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/order-picking%20finish.png?raw=true)
