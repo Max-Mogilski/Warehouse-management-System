@@ -17,13 +17,28 @@ To fully use the application you need to allow your camera due to the scanning f
 ## How does the application work?
 
  ### Adding product model
-  First, we must create a product model in order to see products in the shop
+  First, we must create a product model in the cms in order to see products in the shop
   <br><br>
   ![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-prod.png?raw=true)
    <br><br>
   As soon as we have added one, we will be able to see the product in the store
   <br><br>
-![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/Zrzut%20ekranu%202023-09-1%20o%2019.29.42.png?raw=true)
+![Shop view](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/Zrzut%20ekranu%202023-09-1%20o%2019.29.42.png?raw=true)
+### Creating a location and assigning a pallet
+ To refill a product stock we need to create a location and a pallet where products will be stored.
+ In CMS -> MANAGMENT -> CREATE we have an option to create a location and a pallet.
+ <br><br>
+ ![Create view](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/create-view.png?raw=true)
+ <br><br>
+ Once we click "location", a location is created
+ <br><br>
+ ![Location creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/create-location.png?raw=true)
+ Now we should print the saved location QR code and put it into the rack/place where the location should be.
+ By default, the location doesn't contain any pallet, so we need to create one.
+ To create a pallet we need to scan a location QR code, or we can type it in manually in case of a broken location label.
+ ![Pallet creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/create-pallet.png?raw=true)
+ After the pallet has been created we can see it is attached to the location that we provided.
+ ![Pallet inspection](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/pallet-inspection.png?raw=true)
   
 ## Features
 ### Shop prototype
