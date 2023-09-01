@@ -33,12 +33,17 @@ To fully use the application you need to allow your camera due to the scanning f
  Once we click "location", a location is created
  <br><br>
  ![Location creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/create-location.png?raw=true)
+ <br><br>
  Now we should print the saved location QR code and put it into the rack/place where the location should be.
  By default, the location doesn't contain any pallet, so we need to create one.
  To create a pallet we need to scan a location QR code, or we can type it in manually in case of a broken location label.
+ <br><br>
  ![Pallet creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/create-pallet.png?raw=true)
+ <br><br>
  After the pallet has been created we can see it is attached to the location that we provided.
+ <br><br>
  ![Pallet inspection](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/pallet-inspection.png?raw=true)
+ <br><br>
   
 ## Features
 ### Shop prototype
