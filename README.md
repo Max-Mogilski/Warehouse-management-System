@@ -86,9 +86,13 @@ To fully use the application you need to allow your camera due to the scanning f
  As soon as you click the "next" button, you should be transferred to the next page. If there are no more items to pick, it means the order is finished and you will see the shipment label that you should print and put on a box/cart with picked items. Afterwards, you should leave the picked items in the pickup zone where they will be picked up.
    <br><br>
     ![Start order picking](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/order-picking%20finish.png?raw=true)
+ ### Handeling errors
+ It has been designed with the intention of being easy to use, so if you provide incorrect data, such as an incorrect location or product, you will be notified.
+ <br><br>
+ ![Start order picking](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/error.png?raw=true)
   
   
-## Features
+## All Features
 ### Shop prototype
   - add/remove products from the cart
   - create an order
