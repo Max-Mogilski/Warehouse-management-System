@@ -18,7 +18,12 @@ To fully use the application you need to allow your camera due to the scanning f
 
  ### Adding product model
   First, we must create a product model in order to see products in the shop
+  </ br>
   ![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-prod.png?raw=true)
+   </ br>
+  As soon as we have added one, we will be able to see the product in the store
+  </ br>
+![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/Zrzut%20ekranu%202023-09-1%20o%2019.29.42.png?raw=true)
   
 ## Features
 ### Shop prototype
