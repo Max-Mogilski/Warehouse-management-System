@@ -44,6 +44,37 @@ To fully use the application you need to allow your camera due to the scanning f
  <br><br>
  ![Pallet inspection](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/pallet-inspection.png?raw=true)
  <br><br>
+ ### Product refill
+ Finally after creating location and pallet we are ready to refill product quantity.
+ However, before we proceed, we should print the pallet label and attach it to the pallet itself.
+ To refill product we should go to MANAGMENT -> REFILL and scan product that we want to put on a pallet.
+ <br><br>
+ ![Product refill](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/scan-product.png?raw=true)
+ <br><br>
+ Next we need to scan the pallet label on which products should be placed
+ <br><br>
+ ![Scan pallet](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/scan-pallet.png?raw=true)
+ <br><br>
+ And the last step, provide the quantity (how many items of this product type you want to put on the pallet)
+ <br><br>
+ ![Provide quantity](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/provide-quantity.png?raw=true)
+ <br><br>
+ Upon successfully adding products to the pallet, we will be able to see that the stock has been updated
+ <br><br>
+  ![Stock view](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/stock-view.png?raw=true)
+  ![Inspect full location](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/inspect-full-location.png?raw=true)
+  <br><br>
+ ### Creating an order
+  <br><br>
+  Now we are able to add items to the cart and place an order.
+  <br><br>
+  ![Add to the cart](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-cart.png?raw=true)
+  ![The cart](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/cart.png?raw=true)
+  ![Order creation](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/order-creation.png?raw=true)
+  ![Payment](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/payment.png?raw=true)
+  ![Payment Success](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/success-payment.png?raw=true)
+ ### Order picking (picking an order)
+  
   
 ## Features
 ### Shop prototype
