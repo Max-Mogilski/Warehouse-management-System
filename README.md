@@ -14,6 +14,12 @@ To fully use the application you need to allow your camera due to the scanning f
  
  #### Deploy: docker, linux, vps
 
+## How does the application work?
+
+ ### Adding product model
+  First, we must create a product model in order to see products in the shop
+  ![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-prod.png?raw=true)
+  
 ## Features
 ### Shop prototype
   - add/remove products from the cart
