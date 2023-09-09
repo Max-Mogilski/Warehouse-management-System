@@ -17,7 +17,8 @@ To fully use the application you need to allow your camera due to the scanning f
 ## How does the application work?
 
  ### Adding product model
-  First, we must create a product model in the cms in order to see products in the shop
+  First, we must create a product model in the cms in order to see products in the shop.
+  CMS -> MANAGMENT -> CREATE -> PRODUCT
   <br><br>
   ![Add product model](https://github.com/Hero1230/Warehouse-management-System/blob/master/images-gh/add-prod.png?raw=true)
    <br><br>
